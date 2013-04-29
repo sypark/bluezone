@@ -1,0 +1,4 @@
+solr
+====
+
+Solr Project
