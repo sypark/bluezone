@@ -15,20 +15,8 @@
     </appender>
  
     <!-- 3rdparty Loggers -->
-    <logger name="org.springframework.core">
-        <level value="WARN" />
-    </logger>
- 
-    <logger name="org.springframework.beans">
-        <level value="WARN" />
-    </logger>
-     
-    <logger name="org.springframework.context">
-        <level value="WARN" />
-    </logger>
- 
-    <logger name="org.springframework.web">
-        <level value="WARN" />
+    <logger name="com.bluezone.bil">
+        <level value="DEBUG" />
     </logger>
  
     <!-- Root Logger -->

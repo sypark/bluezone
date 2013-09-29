@@ -63,7 +63,7 @@
 				  	</div>
 					<div class="control-group">
 						<div class="controls">
-							<a href="/cust/main.do"><button type="button" class="btn btn-large btn-primary">Log In</button></a>
+							<a href="/main.do"><button type="button" class="btn btn-large btn-primary">Log In</button></a>
 						</div>
 					</div>
 				</form>

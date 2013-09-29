@@ -7,34 +7,35 @@ var Login={
 		}
 	},
 	validLoginForm:function(){
-		if(jQuery("#email").val() == ""){
+		if(jQuery("#top_email").val() == ""){
 			alert("이메일 주소를 입력해 주세요");
-			jQuery("#email").focus();
+			jQuery("#top_email").focus();
 			return false;
 		}else if(Login.availEmailChk() == false){
 			return false;
-		}else if(jQuery("#passwd").val() == ""){
+		}else if(jQuery("#top_passwd").val() == ""){
 			alert("비밀번호를 입력해 주세요");
-			jQuery("#passwd").focus();
+			jQuery("#top_passwd").focus();
 			return false;
 		}else{
 			return true;
 		}
 	},
 	availEmailChk:function(){
-		var email = jQuery("#email").val();
+		var email = jQuery("#top_email").val();
 		var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;   
 		  
 		if(regex.test(email) === false) {
-			Cust.composeEmail(" [잘못된 이메일 형식입니다.]", "N");
-		    return false;  
+			var h = " <span class='btn btn-danger' style='margin:0 0 +10px 0;'>삐익!</span>";
+			jQuery("#login_email_txt").html(h);
+		    return false; 
 		}else{
 			return true;
 		}  
 	},
 	ajaxLogin:function(){
-		var email = jQuery("#email").val();
-		var passwd = jQuery("#passwd").val();
+		var email = jQuery("#top_email").val();
+		var passwd = jQuery("#top_passwd").val();
 		
 		var url = "/cust/ajaxLoginProcess.do";
 		var params = "email="+email+"&passwd="+passwd;
@@ -54,7 +55,6 @@ var Login={
 	    });
 	},
 	ajaxLoginRslt:function(data){
-		alert(data);
 		if(data != undefined && data != ""){
 			if(data == "1"){
 				location.href="/main.do";
@@ -64,3 +64,11 @@ var Login={
 		}
 	}
 };
+jQuery(document).ready(function(){
+	jQuery("#top_email").click(function(){
+		jQuery("#login_email_txt").text("");
+	});
+	jQuery("#top_email").blur(function(){
+		Login.availEmailChk();
+	});
+});

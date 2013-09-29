@@ -29,10 +29,6 @@ public class CstCustController {
 	@Autowired
 	private CstCustRecordMstService cstCustRecordMstService;
 
-	@RequestMapping(value="/main.do")
-	public ModelAndView main(HttpServletRequest request, HttpServletResponse response){
-		return new ModelAndView("main");
-	}
 	
 	@RequestMapping(value="/cust/insForm.do")
 	public ModelAndView insForm(HttpServletRequest request, HttpServletResponse response){
@@ -138,14 +134,5 @@ public class CstCustController {
 		return (custNo > 0 ? "1":"0");
 	}
 	
-	@RequestMapping(value="/logout.do")
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response){
-		
-			// 쿠키값 생성
-		CookieUtils cookieUtils = new CookieUtils();
-		cookieUtils.removeCookie(request, response);
-		
-		return new ModelAndView("redirect:/main.do");
-	}
 	
 }

@@ -15,8 +15,8 @@
 					<div class="nav-collapse collapse navbar-inverse-collapse">
 						<ul class="nav">
 							<li class="active"><a href="#">Home</a></li>
-							<li><a href="#">Link</a></li>
-							<li><a href="#">Link</a></li>
+							<li><a href="#">경기기록</a></li>
+							<li><a href="/game/createGame.do"><i class="icon-pencil icon-white"></i>기록입력</a></li>
 							<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -49,7 +49,7 @@
 		</div><!-- /navbar -->
 		
 		<!-- Modal -->
-		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:450px;">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		    <h3 id="myModalLabel">Log In</h3>
@@ -60,18 +60,18 @@
 			    <tr>
 			      <td>Email</td>
 			      <td>&nbsp;:&nbsp;</td>
-			      <td><input type="text" id="email" placeholder="Email"></td>
+			      <td><input type="text" id="top_email" name="top_email" placeholder="Email"> <span id="login_email_txt"></span></td>
 			    </tr>
 			    <tr>
 			      <td>Password</td>
 			      <td>&nbsp;:&nbsp;</td>
-			      <td><input type="password" id="passwd" placeholder="Password"></td>
+			      <td><input type="password" id="top_passwd" name="top_passwd" placeholder="Password"></td>
 			    </tr>
 			  </tbody>
 			</table>
 		  </div>
 		  <div class="modal-footer">
-		    <a href="javascript:Login.login()"><button class="btn btn-primary">Log In</button></a>
+		    <a href="javascript:Login.login()"><button type="button" class="btn btn-primary" data-loading-text="Loading...">Log In</button></a>
 		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		  </div>
 		</div>

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bluezone.bil.dao.CstCustMstRepository;
-import com.bluezone.bil.dao.CstCustRecordMstRepository;
+import com.bluezone.bil.dao.cust.repository.CstCustMstRepository;
+import com.bluezone.bil.dao.cust.repository.CstCustRecordMstRepository;
 import com.bluezone.bil.domain.cust.CstCustMst;
 import com.bluezone.bil.domain.cust.CstCustMstExample;
 import com.bluezone.bil.domain.cust.CstCustMstExample.Criteria;

@@ -1,5 +1,11 @@
 <!DOCTYPE HTML>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.bluezone.bil.util.StringUtils" %>
+<%@page import="com.bluezone.bil.domain.cust.CstCustMst" %>
+<%@page import="com.bluezone.bil.domain.cust.CstCustRecordMst" %>
+<%
+	CstCustRecordMst cstCustRecordMst = (CstCustRecordMst)request.getAttribute("cstCustRecordMst");
+%>
 <html>
 <head>
 <title>Main</title>
@@ -29,44 +35,47 @@
 						</h4>
 					</div>
 
-					<div class="widget-body">
-						<div class="widget-main no-padding">
+					<div>
+						<div class="no-padding">
 							<table class="table table-bordered table-striped">
 								<tbody>
 									<tr>
-										<td><h4><i class="icon-play"></i></h4></td>
+										<td><i class="icon-play"></i></td>
 										<td>
-											<h5>수지</h5>
+											 수지
 										</td>
 										<td>
-											<h5>24점</h5>
-										</td>
-									</tr>
-									<tr>
-										<td><h5><i class="icon-play"></i></h5></td>
-										<td>
-											<h5>High Run</h5>
-										</td>
-										<td>
-											<h5>12점</h5>
+											<%=cstCustRecordMst.getScore()%>점
 										</td>
 									</tr>
 									<tr>
-										<td><h5><i class="icon-play"></i></h5></td>
+										<td><i class="icon-play"></i></td>
 										<td>
-											<h5>Avg.</h5>
+											High Run
 										</td>
 										<td>
-											<h5>1.68</h5>
+											<%=StringUtils.getInt(cstCustRecordMst.getHighRun())%>점
 										</td>
 									</tr>
 									<tr>
-										<td><h5><i class="icon-play"></i></h5></td>
+										<td><i class="icon-play"></i></td>
 										<td>
-											<h5>전적</h5>
+											Avg.
 										</td>
 										<td>
-											<h5>24게G/12W/10L/2M</h5>
+											<%=StringUtils.getFloat(cstCustRecordMst.getAvg())%>
+										</td>
+									</tr>
+									<tr>
+										<td><i class="icon-play"></i></td>
+										<td>
+											전적
+										</td>
+										<td>
+											<p>Total : <%=StringUtils.getInt(cstCustRecordMst.getWinCnt())+StringUtils.getInt(cstCustRecordMst.getLoseCnt())+StringUtils.getInt(cstCustRecordMst.getDrawCnt())%>G</p>
+											<p>Win : <%=StringUtils.getInt(cstCustRecordMst.getWinCnt())%>G</p>
+											<p>Lost : <%=StringUtils.getInt(cstCustRecordMst.getLoseCnt())%>G</p>
+											<p>Draw : <%=StringUtils.getInt(cstCustRecordMst.getDrawCnt())%>G</p>
 										</td>
 									</tr>
 								</tbody>
