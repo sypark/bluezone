@@ -192,7 +192,7 @@ var Game={
 				gameRecord += "</colgroup>";
 				gameRecord += "<tr><td style='text-align:right;'>닉네임</td><td>&nbsp;</td><td><button class='btn btn-mini btn-"+(i%2==0 ? "warning":"info")+"' type='button'>" +data[i].nickName+ "</button>";
 				if(jQuery("#custNo1").val() == data[i].custNo){
-					gameRecord += "<span style='margin:auto 10px'><button class='btn btn-mini' type='button'><i class='icon-hand-right'></i>참여하기</button></span>";
+					gameRecord += "<span style='margin:auto 10px'><button class='btn btn-mini' type='button' onClick='location.href=\"/inning/gameRecordInningForm.do?gameNo="+data[i].gameNo+"\"'><i class='icon-hand-right'></i>참여하기</button></span>";
 				}
 				gameRecord += "</td></tr>";
 				gameRecord += "<tr class='warning'><td style='text-align:right;'>수     지 </td><td>&nbsp;</td><td><button class='btn btn-mini btn-"+(i%2==0 ? "warning":"info")+"' type='button'>" +GameUtil.getInt(data[i].custScore)+ "</button></td></tr>";

@@ -40,7 +40,6 @@
         	</div>
 		</div>
 		
- 		<!-- // Loading Layer Popup -->
 		<!-- Modal -->
 		<form name="form_create_game" id="form_create_game">
 		<input type="hidden" name="matchNo" id="matchNo" value="<%=StringUtils.getString(request.getParameter("matchNo"))%>" />

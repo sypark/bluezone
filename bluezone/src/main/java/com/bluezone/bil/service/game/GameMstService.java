@@ -26,6 +26,10 @@ public class GameMstService {
 	private GameRecordRepository gameRecordRepository;
 	@Autowired
 	private CstCustRecordMstRepository cstCustRecordMstRepository;
+	
+	public GameMst selectByPrimaryKey(Integer gameNo){
+		return gameMstRepository.selectByPrimaryKey(gameNo);
+	}
 
 	public List<GameMst> selectByExample(GameMst gameMst) {
 		return selectByExample(gameMst, null);

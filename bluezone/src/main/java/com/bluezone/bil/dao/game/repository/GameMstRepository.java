@@ -16,6 +16,10 @@ public class GameMstRepository {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	public GameMst selectByPrimaryKey(Integer gameNo) {
+		return sqlSession.getMapper(GameMstMapper.class).selectByPrimaryKey(gameNo);
+	}
+	
 	public List<GameMst> selectByExample(GameMstExample example) {
 		return sqlSession.getMapper(GameMstMapper.class).selectByExample(example);
 	}

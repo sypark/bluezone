@@ -16,6 +16,10 @@ public class MatchMstRepository {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	public MatchMst selectByPrimaryKey(Integer matchNo) {
+		return sqlSession.getMapper(MatchMstMapper.class).selectByPrimaryKey(matchNo);
+	}
+
 	public List<MatchMst> selectByExample(MatchMstExample example) {
 		return sqlSession.getMapper(MatchMstMapper.class).selectByExample(example);
 	}
@@ -23,4 +27,5 @@ public class MatchMstRepository {
 	public int insert(MatchMst record) {
 		return sqlSession.getMapper(MatchMstMapper.class).insert(record);
 	}
+
 }
