@@ -17,7 +17,7 @@ import com.bluezone.bil.domain.cust.CstCustMst;
 import com.bluezone.bil.domain.cust.CstCustRecordMst;
 import com.bluezone.bil.service.cust.CstCustMstService;
 import com.bluezone.bil.service.cust.CstCustRecordMstService;
-import com.bluezone.bil.util.cookie.CookieMgr;
+import com.bluezone.bil.util.DateUtils;
 import com.bluezone.bil.util.cookie.CookieUtils;
 
 @Controller
@@ -44,13 +44,11 @@ public class CstCustController {
 		System.out.println("score:"+score);
 		System.out.println("cstCustMst:"+cstCustMst.getCustNm());
 		
-		java.util.Date date = new java.util.Date();
-		
 		// CstCustMst setting
 		cstCustMst.setRegrId(CommonConstant.SYSTEM_ID);
-		cstCustMst.setRegDtm(new java.sql.Timestamp(date.getTime()));
+		cstCustMst.setRegDtm(DateUtils.curTimestamp());
 		cstCustMst.setUpdrId(CommonConstant.SYSTEM_ID);
-		cstCustMst.setUpdDtm(new java.sql.Timestamp(date.getTime()));
+		cstCustMst.setUpdDtm(DateUtils.curTimestamp());
 		cstCustMst.setUseYn("Y");
 		
 		// CstCustRecordMst setting
@@ -58,9 +56,9 @@ public class CstCustController {
 		cstCustRecordMst.setScore(score);
 		cstCustRecordMst.setScoreAvg(new Float(score).floatValue());
 		cstCustRecordMst.setRegrId(CommonConstant.SYSTEM_ID);
-		cstCustRecordMst.setRegDtm(new java.sql.Timestamp(date.getTime()));
+		cstCustRecordMst.setRegDtm(DateUtils.curTimestamp());
 		cstCustRecordMst.setUpdrId(CommonConstant.SYSTEM_ID);
-		cstCustRecordMst.setUpdDtm(new java.sql.Timestamp(date.getTime()));
+		cstCustRecordMst.setUpdDtm(DateUtils.curTimestamp());
 		
 		int custNo = 0;
 		try{

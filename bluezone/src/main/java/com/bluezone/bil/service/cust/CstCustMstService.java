@@ -52,6 +52,17 @@ public class CstCustMstService {
 	public CstCustMst selectByPrimaryKey(Integer custNo) {
 		return cstCustMstRepository.selectByPrimaryKey(custNo);
 	}
+	
+	public List<CstCustMst> selectByExample(CstCustMst cstCustMst) {
+		CstCustMstExample example = new CstCustMstExample();
+		if(cstCustMst != null){
+			Criteria criteria = example.createCriteria();
+			if(cstCustMst.getCustNm() != null)
+				criteria.andCustNmEqualTo(cstCustMst.getCustNm());
+		}
+		
+		return cstCustMstRepository.selectByExample(example);
+	}
 
 	public int loginChk(CstCustMst cstCustMst) {
 		CstCustMstExample example = new CstCustMstExample();

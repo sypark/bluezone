@@ -16,6 +16,10 @@ public class GameRecordRepository {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	public int insert(GameRecord record){
+		return sqlSession.getMapper(GameRecordMapper.class).insert(record);
+	}
 
 	public List<GameRecord> selectByExample(GameRecordExample example) {
 		return sqlSession.getMapper(GameRecordMapper.class).selectByExample(example);

@@ -46,9 +46,10 @@ CREATE TABLE MATCH_MST(
 	UPDR_ID VARCHAR(30) NOT NULL COMMENT '수정자',
 	MATCH_NM VARCHAR(100) NOT NULL COMMENT '대회명',
 	USE_YN VARCHAR(1) NOT NULL COMMENT '사용여부',
-	MATCH_DT VARCHAR(8) COMMENT '대회일자',
 	YYYYMM VARCHAR(6) COMMENT '년월',
 	WEEK VARCHAR(1) COMMENT '주',
+	STD_DT VARCHAR(8) COMMENT '시작일자',
+	END_DT VARCHAR(8) COMMENT '종료일자',
 	MATCH_TYPE VARCHAR(2) COMMENT '대회유형'
 )  DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI ;
 
@@ -63,7 +64,7 @@ CREATE TABLE GAME_MST(
 	UPDR_ID VARCHAR(30) NOT NULL COMMENT '수정자',
 	MATCH_NO INT(10) NOT NULL COMMENT '대회번호',
 	GAME_NM VARCHAR(100) COMMENT '게임명',
-	USE_YN VARCHAR(1) NOT NULL COMMENT '사용여부',
+	STATUS VARCHAR(1) NOT NULL COMMENT '상태',
 	GAME_DT VARCHAR(8) COMMENT '게임일자',
 	MEM_CNT INT(2) NOT NULL COMMENT '참여인원',
 	INNING_CNT INT(3) COMMENT '이닝수',
@@ -116,8 +117,8 @@ CREATE UNIQUE INDEX IX_GAME_RECORD_INNING_01 ON GAME_RECORD_INNING ( GAME_REC_NO
 
 
 ## [Sample Data]
-insert into match_mst (Reg_DTM, REGR_ID, UPD_DTM, UPDR_ID, MATCH_NM, MATCH_DT, YYYYMM, WEEK, MATCH_TYPE,use_yn)
-values(sysdate(),'system',sysdate(),'system','15회정기대회','20130930','201309','5', '1','Y');
+insert into match_mst (Reg_DTM, REGR_ID, UPD_DTM, UPDR_ID, MATCH_NM, std_dt, end_dt, YYYYMM, WEEK, MATCH_TYPE,use_yn)
+values(sysdate(),'system',sysdate(),'system','15회정기대회','20130930','20131001','201309','5', '1','Y');
 
 insert into game_mst (Reg_DTM, REGR_ID, UPD_DTM, UPDR_ID, MATCH_no, game_nm, use_yn, game_dt, mem_cnt, inning_cnt)
 values(sysdate(),'system',sysdate(),'system', 1, 'test game', 'Y', '20130929', 2, 40);

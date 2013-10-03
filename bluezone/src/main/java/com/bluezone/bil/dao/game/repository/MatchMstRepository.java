@@ -19,4 +19,8 @@ public class MatchMstRepository {
 	public List<MatchMst> selectByExample(MatchMstExample example) {
 		return sqlSession.getMapper(MatchMstMapper.class).selectByExample(example);
 	}
+
+	public int insert(MatchMst record) {
+		return sqlSession.getMapper(MatchMstMapper.class).insert(record);
+	}
 }

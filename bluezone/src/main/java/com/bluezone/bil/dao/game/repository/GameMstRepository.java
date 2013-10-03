@@ -19,4 +19,8 @@ public class GameMstRepository {
 	public List<GameMst> selectByExample(GameMstExample example) {
 		return sqlSession.getMapper(GameMstMapper.class).selectByExample(example);
 	}
+	
+	public int insert(GameMst record){
+		return sqlSession.getMapper(GameMstMapper.class).insert(record);
+	}
 }
