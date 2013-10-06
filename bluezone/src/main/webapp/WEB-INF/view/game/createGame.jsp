@@ -27,7 +27,7 @@
 <body>
 	<div class="container">
 		<!-- Body content-->
-		<jsp:include page="/WEB-INF/view/common/top_navi.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp"></jsp:include>
 		
 		<div class="row-fluid">
         <div class="span12">

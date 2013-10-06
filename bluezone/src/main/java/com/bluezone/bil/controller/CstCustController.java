@@ -18,6 +18,7 @@ import com.bluezone.bil.domain.cust.CstCustRecordMst;
 import com.bluezone.bil.service.cust.CstCustMstService;
 import com.bluezone.bil.service.cust.CstCustRecordMstService;
 import com.bluezone.bil.util.DateUtils;
+import com.bluezone.bil.util.cookie.CookieMgr;
 import com.bluezone.bil.util.cookie.CookieUtils;
 
 @Controller
@@ -36,8 +37,8 @@ public class CstCustController {
 		return new ModelAndView("cust/insForm");
 	}
 	
-	@RequestMapping(value="/cust/ajaxInsert.do", method = RequestMethod.POST)
-	public @ResponseBody Integer insertProcess(@ModelAttribute CstCustMst cstCustMst,
+	@RequestMapping(value="/cust/ajaxInsert.do", method=RequestMethod.POST)
+	public @ResponseBody Object insertProcess(@ModelAttribute CstCustMst cstCustMst,
 			@RequestParam("score") Integer score,
 			HttpServletRequest request, HttpServletResponse response){
 		
@@ -50,6 +51,7 @@ public class CstCustController {
 		cstCustMst.setUpdrId(CommonConstant.SYSTEM_ID);
 		cstCustMst.setUpdDtm(DateUtils.curTimestamp());
 		cstCustMst.setUseYn("Y");
+		cstCustMst.setCustLevel(CommonConstant.CUST_GRADE_NORMAL);
 		
 		// CstCustRecordMst setting
 		CstCustRecordMst cstCustRecordMst = new CstCustRecordMst();
@@ -84,7 +86,7 @@ public class CstCustController {
 	}
 	
 	@RequestMapping(value="/cust/ajaxDupChkNickName.do")
-	public @ResponseBody String ajaxDupChkNickName(@RequestParam("nickName") String nickName,
+	public @ResponseBody Object ajaxDupChkNickName(@RequestParam("nickName") String nickName,
 			HttpServletRequest request, HttpServletResponse response){
 		
 		System.out.println("nickName:"+nickName);
@@ -98,7 +100,7 @@ public class CstCustController {
 	}
 	
 	@RequestMapping(value="/cust/ajaxDupChkEmail.do")
-	public @ResponseBody String ajaxDupChkEmail(@RequestParam("email") String email,
+	public @ResponseBody Object ajaxDupChkEmail(@RequestParam("email") String email,
 			HttpServletRequest request, HttpServletResponse response){
 		
 		System.out.println("email:"+email);
@@ -112,7 +114,7 @@ public class CstCustController {
 	}
 	
 	@RequestMapping(value="/cust/ajaxLoginProcess.do")
-	public @ResponseBody String ajaxLoginProcess(@RequestParam("email") String email,
+	public @ResponseBody Object ajaxLoginProcess(@RequestParam("email") String email,
 			@RequestParam("passwd") String passwd,
 			HttpServletRequest request, HttpServletResponse response){
 		
@@ -130,6 +132,18 @@ public class CstCustController {
 		}
 		
 		return (custNo > 0 ? "1":"0");
+	}
+	
+	@RequestMapping(value="/cust/ajaxCustInfo.do")
+	public @ResponseBody Object ajaxCustInfo(HttpServletRequest request, HttpServletResponse response){
+		
+		int custNo = CookieMgr.getCustNo(request);
+		
+		if(custNo > 0){
+			return cstCustMstService.selectByPrimaryKey(custNo);
+		}else{
+			return null;
+		}
 	}
 	
 	

@@ -74,8 +74,8 @@ var Cust={
 	        data:params,
 	        async:true,
 	        timeout:3000,
-	        success:function(args){
-	        	Cust.ajaxCustInsertRslt(args);
+	        success:function(data){
+	        	Cust.ajaxCustInsertRslt(data);
 	        },   
 	        error:function(e){  
 	            alert(e.responseText);  
@@ -102,8 +102,8 @@ var Cust={
 		        data:params,
 		        async:true,
 		        timeout:3000,
-		        success:function(args){
-		        	Cust.ajaxNickNameDupRslt(args);
+		        success:function(data){
+		        	Cust.ajaxNickNameDupRslt(data);
 		        },   
 		        error:function(e){  
 		            alert(e.responseText);  
@@ -131,8 +131,8 @@ var Cust={
 		        data:params,
 		        async:true,
 		        timeout:3000,
-		        success:function(args){
-		        	Cust.ajaxEmailDupRslt(args);
+		        success:function(data){
+		        	Cust.ajaxEmailDupRslt(data);
 		        },   
 		        error:function(e){  
 		            alert(e.responseText);  

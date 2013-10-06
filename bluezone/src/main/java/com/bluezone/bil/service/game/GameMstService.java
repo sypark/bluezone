@@ -77,4 +77,8 @@ public class GameMstService {
 		return 1;
 	}
 
+	public int updateByPrimaryKeySelective(GameMst gameMst) {
+		return gameMstRepository.updateByPrimaryKeySelective(gameMst);
+	}
+
 }

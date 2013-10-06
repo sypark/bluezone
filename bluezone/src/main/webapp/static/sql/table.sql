@@ -12,6 +12,8 @@ CREATE TABLE CST_CUST_MST(
 	EMAIL VARCHAR(100) NOT NULL COMMENT '이메일',
 	PASSWD VARCHAR(100) NOT NULL COMMENT '비밀번호',
 	NICK_NAME VARCHAR(50) NOT NULL COMMENT '닉네임',
+	CUST_LEVEL INT(1) NOT NULL COMMENT '고객등급',
+	CUST_SEX VARCHAR(1) NOT NULL COMMENT '성별',
 	WITHDRAW_DATE VARCHAR(8)  COMMENT '탈퇴일자'
 )  DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI ;
 
@@ -89,12 +91,12 @@ CREATE TABLE GAME_RECORD(
 	CUST_NO INT(10) NOT NULL COMMENT '고객번호',
 	SCORE INT(3) NOT NULL COMMENT '수지',
 	INNING INT(3) COMMENT '이닝',
-	EARN_SCORE INT(3) COMMENT '득점',
+	EARN_SCORE INT(3) default 0 COMMENT '득점',
 	AVG FLOAT(10) COMMENT '에버리지',
-	HIGH_RUN INT(2) COMMENT '하이런',
-	WIN_CNT INT(1) COMMENT '승',
-	LOSE_CNT INT(1) COMMENT '패',
-	DRAW_CNT INT(1) COMMENT '무'
+	HIGH_RUN INT(2) default 0 COMMENT '하이런',
+	WIN_CNT INT(1) default 0  COMMENT '승',
+	LOSE_CNT INT(1) default 0  COMMENT '패',
+	DRAW_CNT INT(1) default 0  COMMENT '무'
 )  DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI ;
 
 CREATE INDEX IX_GAME_RECORD_01 ON GAME_RECORD ( GAME_NO );
@@ -110,10 +112,10 @@ CREATE TABLE GAME_RECORD_INNING(
 	UPD_DTM DATETIME NOT NULL COMMENT '수정일시',
 	UPDR_ID VARCHAR(30) NOT NULL COMMENT '수정자',
 	INNING_NUM INT(3) NOT NULL COMMENT '이닝번호',
-	EARN_SCORE INT(3) NOT NULL COMMENT '득점'
+	EARN_SCORE INT(3) NOT NULL default 0 COMMENT '득점'
 )  DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI ;
 
-CREATE UNIQUE INDEX IX_GAME_RECORD_INNING_01 ON GAME_RECORD_INNING ( GAME_REC_NO );
+CREATE UNIQUE INDEX IX_GAME_RECORD_INNING_01 ON GAME_RECORD_INNING ( GAME_REC_NO, INNING_NUM);
 
 
 ## [Sample Data]
@@ -131,6 +133,9 @@ select GAME_NO, REG_DTM, REGR_ID, UPD_DTM, UPDR_ID, MATCH_NO, GAME_NM, USE_YN, G
 from game_mst 
 WHERE ( MATCH_NO = 1 and USE_YN = 'Y' ) ;
 
+
+
+insert into game_record_inning values(46, sysdate(), 'system', sysdate(), 'system', 17, 10);
 
 -- GameRecordMapper.selectGameWithCustInfo
 SELECT A.*,
@@ -150,3 +155,40 @@ LEFT JOIN CST_CUST_RECORD_MST C ON B.CUST_NO=C.CUST_NO
 WHERE A.GAME_NO = 1
   AND A.CUST_NO = B.CUST_NO
   AND B.USE_YN = 'Y';
+  
+-- analysisCstCustRecord  
+SELECT A.CUST_NO AS CUST_NO,
+        COUNT(*) AS GAME_CNT,
+        ifnull(AVG(A.AVG),0) AS GAME_AVG,
+        ifnull(SUM(EARN_SCORE),0) AS SUM_EARN_SCORE,
+        ifnull(MAX(HIGH_RUN),0) AS MAX_HIGH_RUN,
+		ifnull(SUM(A.WIN_CNT),0) AS SUM_WIN_CNT,
+        ifnull(SUM(A.LOSE_CNT),0) AS SUM_WIN_CNT,
+        ifnull(SUM(A.DRAW_CNT),0) AS SUM_DRAW_CNT
+FROM   GAME_RECORD A
+WHERE  CUST_NO = 2
+GROUP BY CUST_NO;
+
+-- 상대전적 리스트
+select aa.*,
+        ccm.nick_name,
+        ccrm.score
+from
+	(select b.cust_no, 
+			count(*) game_cnt,
+			ifnull(sum(b.win_cnt),0) sum_win_cnt,
+			ifnull(sum(b.lose_cnt),0) sum_lose_cnt,
+			ifnull(sum(b.draw_cnt),0) sum_draw_cnt
+	from
+		(select gr.game_no
+		from   game_record gr
+		where  gr.cust_no = 1) a,
+		game_record b
+	where a.game_no = b.game_no
+	  and b.cust_no <> 1
+	group by b.cust_no) aa,
+    cst_cust_mst ccm,
+    cst_cust_record_mst ccrm
+where aa.cust_no = ccm.cust_no
+  and aa.cust_no = ccrm.cust_no
+order by ccm.nick_name

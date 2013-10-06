@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.bluezone.bil.domain.cust.AnalysisCustRecord;
 import com.bluezone.bil.domain.cust.CstCustRecordMst;
 import com.bluezone.bil.domain.cust.CstCustRecordMstExample;
 
@@ -95,4 +96,10 @@ public interface CstCustRecordMstMapper {
      * @mbggenerated Sun Sep 22 21:27:10 KST 2013
      */
     int updateByPrimaryKey(CstCustRecordMst record);
+
+    AnalysisCustRecord analysisCstCustRecord(Integer custNo);
+
+	List<AnalysisCustRecord> analysisAgainstRecordList(Integer custNo);
+
+	List<AnalysisCustRecord> totalMemberScoreList();
 }

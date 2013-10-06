@@ -11,12 +11,13 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a class="brand" href="#">Title</a>
+					<a class="brand" href="/main.do"><i class="icon-home icon-white"></i></a>
 					<div class="nav-collapse collapse navbar-inverse-collapse">
 						<ul class="nav">
-							<li class="active"><a href="#">Home</a></li>
+							<!-- <li class="active"><a href="/main.do">Home</a></li> -->
 							<li><a href="#">경기기록</a></li>
 							<li><a href="/game/createGame.do"><i class="icon-pencil icon-white"></i>기록입력</a></li>
+							<!-- 
 							<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -29,20 +30,21 @@
 								<li><a href="#">One more separated link</a></li>
 							</ul>
 							</li>
-						</ul>
 					<form class="navbar-search pull-left" action="">
 						<input type="text" class="search-query span2" placeholder="Search">
 					</form>
-					<ul class="nav pull-right">
-					<%if(CookieMgr.isLogin(request)){%>
-						<li><a href="/logout.do"><i class="icon-user icon-white"></i>&nbsp;Log Off</a></li>
-						<li class="divider-vertical"></li>
-					<%}else{%>
-						<li><a href="#myModal" role="button" data-toggle="modal"><i class="icon-lock icon-white"></i>&nbsp;Log In</a></li>
-						<li class="divider-vertical"></li>
-						<li><a href="/cust/insForm.do"><i class="icon-plus icon-white"></i>&nbsp;Register</a></li>
-					<%}%>
-					</ul>
+							 -->
+						</ul>
+						<ul class="nav pull-right">
+						<%if(CookieMgr.isLogin(request)){%>
+							<li><a href="/logout.do"><i class="icon-user icon-white"></i>&nbsp;Log Off</a></li>
+							<li class="divider-vertical"></li>
+						<%}else{%>
+							<li><a href="#myModal" role="button" data-toggle="modal"><i class="icon-lock icon-white"></i>&nbsp;Log In</a></li>
+							<li class="divider-vertical"></li>
+							<li><a href="/cust/insForm.do"><i class="icon-plus icon-white"></i>&nbsp;Register</a></li>
+						<%}%>
+						</ul>
 					</div><!-- /.nav-collapse -->
 				</div>
 			</div><!-- /navbar-inner -->

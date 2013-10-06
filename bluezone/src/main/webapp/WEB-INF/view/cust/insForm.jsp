@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.bluezone.bil.constant.CommonConstant" %>
 <html>
 <head>
 <title>회원가입</title>
@@ -15,7 +16,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
-			<jsp:include page="/WEB-INF/view/common/top_navi.jsp"></jsp:include>
+			<jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp"></jsp:include>
 			</div>
 			<!-- row-fluid -->
 			<div class="row-fluid">
@@ -50,6 +51,15 @@
 						      <span class="text-info">&nbsp;(한글 15자, 영문 30자이내)</span>
 						    </div>
 					 	</div>
+					 	<div class="control-group">
+						    <label class="control-label" for="email">성별</label>
+						    <div class="controls">
+						      <select name="custSex" id="custSex">
+						      	<option value="<%=CommonConstant.CUST_SEX.M.toString()%>">남성</option>
+						      	<option value="<%=CommonConstant.CUST_SEX.F.toString()%>">여성</option>
+						      </select>
+						    </div>
+					  	</div>
 					 	<div class="control-group">
 						    <label class="control-label" for="email">Email</label>
 						    <div class="controls">

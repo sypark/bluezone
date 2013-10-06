@@ -20,5 +20,16 @@ public class GameRecordInningRepository {
 		return sqlSession.getMapper(GameRecordInningMapper.class).selectByExample(example);
 	}
 	
+	public int countByExample(GameRecordInningExample example){
+		return sqlSession.getMapper(GameRecordInningMapper.class).countByExample(example);
+	}
+	
+	public int insert(GameRecordInning record){
+		return sqlSession.getMapper(GameRecordInningMapper.class).insert(record);
+	}
+	
+	public int updateByExampleSelective(GameRecordInning record, GameRecordInningExample example){
+		return sqlSession.getMapper(GameRecordInningMapper.class).updateByExampleSelective(record, example);
+	}
 	
 }

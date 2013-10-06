@@ -33,8 +33,8 @@ var Game={
 	        beforeSend:function(data){
 	        	jQuery("#modal_bottom").html("<span style='margin-right:240px;'><img src='/static/img/ajax-loader.gif'>");
 	        },
-	        success:function(args){
-	        	Game.ajaxCreateGameRslt(args);
+	        success:function(data){
+	        	Game.ajaxCreateGameRslt(data);
 	        },   
 	        error:function(e){  
 	            alert(e.responseText);  
@@ -71,8 +71,8 @@ var Game={
 	        data:params,
 	        async:true,
 	        timeout:3000,
-	        success:function(args){
-	        	Game.ajaxMatchDataRslt(args);
+	        success:function(data){
+	        	Game.ajaxMatchDataRslt(data);
 	        },   
 	        error:function(e){  
 	            alert(e.responseText);  
@@ -128,8 +128,8 @@ var Game={
 	        data:params,
 	        async:true,
 	        timeout:3000,
-	        success:function(args){
-	        	Game.ajaxGameDataRslt(args);
+	        success:function(data){
+	        	Game.ajaxGameDataRslt(data);
 	        },   
 	        error:function(e){  
 	            alert(e.responseText);  
@@ -170,8 +170,8 @@ var Game={
 	        data:params,
 	        async:true,
 	        timeout:3000,
-	        success:function(args){
-	        	Game.ajaxGameRecordDataRslt(args);
+	        success:function(data){
+	        	Game.ajaxGameRecordDataRslt(data);
 	        },   
 	        error:function(e){  
 	            alert(e.responseText);  

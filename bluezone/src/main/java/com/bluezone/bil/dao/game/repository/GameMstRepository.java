@@ -27,4 +27,8 @@ public class GameMstRepository {
 	public int insert(GameMst record){
 		return sqlSession.getMapper(GameMstMapper.class).insert(record);
 	}
+
+	public int updateByPrimaryKeySelective(GameMst record) {
+		return sqlSession.getMapper(GameMstMapper.class).updateByPrimaryKeySelective(record);
+	}
 }

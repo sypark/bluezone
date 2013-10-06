@@ -28,4 +28,12 @@ public class GameRecordRepository {
 	public List<GameCustComp> selectGameWithCustInfo(Integer gameNo) {
 		return sqlSession.getMapper(GameRecordMapper.class).selectGameWithCustInfo(gameNo);
 	}
+	
+	public GameRecord selectByPrimaryKey(Integer gameRecNo) {
+		return sqlSession.getMapper(GameRecordMapper.class).selectByPrimaryKey(gameRecNo);
+	}
+	
+	public int updateByPrimaryKeySelective(GameRecord record) {
+		return sqlSession.getMapper(GameRecordMapper.class).updateByPrimaryKeySelective(record);
+	}
 }

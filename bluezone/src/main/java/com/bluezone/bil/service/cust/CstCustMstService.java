@@ -55,8 +55,8 @@ public class CstCustMstService {
 	
 	public List<CstCustMst> selectByExample(CstCustMst cstCustMst) {
 		CstCustMstExample example = new CstCustMstExample();
+		Criteria criteria = example.createCriteria();
 		if(cstCustMst != null){
-			Criteria criteria = example.createCriteria();
 			if(cstCustMst.getCustNm() != null)
 				criteria.andCustNmEqualTo(cstCustMst.getCustNm());
 		}

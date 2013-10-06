@@ -46,8 +46,8 @@ var Login={
 	        data:params,
 	        async:true,
 	        timeout:3000,
-	        success:function(args){
-	        	Login.ajaxLoginRslt(args);
+	        success:function(data){
+	        	Login.ajaxLoginRslt(data);
 	        },   
 	        error:function(e){  
 	            alert(e.responseText);  
@@ -62,13 +62,40 @@ var Login={
 				alert("회원정보가 없습니다.");
 			}
 		}
+	},
+	ajaxCustInfo:function(){
+		var url = "/cust/ajaxCustInfo.do";
+		jQuery.ajax({      
+	        type:"GET",
+	        url:url,
+	        async:true,
+	        timeout:3000,
+	        success:function(data){
+	        	if(data != undefined && data != null){
+	        		jQuery("#top_nick_name").text(data.nickName);
+	        		if(data.custSex == "F"){
+	        			jQuery("#navbar").css("background-color","#f34541");
+	        		}
+	        	}
+	        },   
+	        error:function(e){  
+	            alert(e.responseText);  
+	        }  
+	    });
 	}
 };
 jQuery(document).ready(function(){
+	Login.ajaxCustInfo();
 	jQuery("#top_email").click(function(){
 		jQuery("#login_email_txt").text("");
 	});
 	jQuery("#top_email").blur(function(){
 		Login.availEmailChk();
+	});
+	jQuery("#click_game_record").click(function(){
+		location.href="/game/createGame.do";
+	});
+	jQuery("#click_create_game").click(function(){
+		location.href="/game/createGame.do";
 	});
 });
