@@ -162,4 +162,13 @@ public class CstCustController {
 		
 		return mav;
 	}
+	@RequestMapping(value="/cust/leftmenu.do")
+	public ModelAndView leftmenu(HttpServletRequest request, HttpServletResponse response){
+		
+		int custNo = CookieMgr.getCustNo(request);
+		
+		ModelAndView mav = new ModelAndView("cust/custRecordLeftMenu");
+		
+		return mav;
+	}
 }
