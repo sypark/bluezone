@@ -81,4 +81,8 @@ public class GameMstService {
 		return gameMstRepository.updateByPrimaryKeySelective(gameMst);
 	}
 
+	public int deleteByPrimaryKey(Integer gameNo) {
+		return gameMstRepository.deleteByPrimaryKey(gameNo);
+	}
+
 }

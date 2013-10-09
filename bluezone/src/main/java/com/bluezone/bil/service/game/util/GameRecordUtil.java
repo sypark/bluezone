@@ -27,7 +27,7 @@ public class GameRecordUtil {
 	}
 	
 	public static Float getAvg(int totalInning, int score){
-		String avg = String.format("%.2f", (score/totalInning*1.0f));
+		String avg = String.format("%.2f", (score/(totalInning*1.0f)));
 		return new Float(avg);
 	}
 	

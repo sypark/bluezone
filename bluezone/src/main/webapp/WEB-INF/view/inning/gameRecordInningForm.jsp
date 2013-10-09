@@ -65,6 +65,7 @@
 		<jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp"></jsp:include>
 		
 		<form>
+        <input type="hidden" name="gameNo" id="gameNo" value="<%=gameMst.getGameNo()%>" />
         <input type="hidden" name="gameRecNo0" id="gameRecNo0" value="<%=gameRecNo0%>" />
         <input type="hidden" name="gameRecNo1" id="gameRecNo1" value="<%=gameRecNo1%>" />
         <input type="hidden" name="inningCnt" id="inningCnt" value="<%=inningCnt%>" />
@@ -79,7 +80,7 @@
 		<div class="row-fluid">
 	        <div class="span6">
 	        	<div id="inning_table" align="center">
-	        	<table class="table table-hover" style="width:50%;">
+	        	<table class="tableList01" style="width:50%;">
 				<colgroup>
 				<col width="10%" />
 				<col width="10%" />
@@ -106,7 +107,7 @@
 				</thead>
 				<tbody>
 				<%for(int i = 0 ; i < 20 ; i++){ %>
-					<tr>
+					<tr style="height:40px;">
 						<td style="text-align:center;"><%=(i+1)%></td>
 						<td style="text-align:center;"><input type="text" name="inning_0" id="inning_0_<%=(i+1)%>" placeholder="0" style="width:40px;" /></td>
 						<td style="text-align:center;"><%=(i+21)%></td>
@@ -162,6 +163,7 @@
 						</p>
 						</button>
 					</div>
+					<div style="text-align:right"><button class="btn btn-mini btn-inverse" type="button" id="btn_delete_game">게임삭제<i class="icon-remove icon-white"></i></button></div>
 				</div>
 			</div><!-- // span6 -->
 		</div>

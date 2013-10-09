@@ -16,6 +16,7 @@ import com.bluezone.bil.domain.game.GameRecordInningExample.Criteria;
 import com.bluezone.bil.service.cust.CstCustRecordMstService;
 import com.bluezone.bil.service.game.util.GameRecordUtil;
 import com.bluezone.bil.util.DateUtils;
+import com.bluezone.bil.util.StringUtils;
 
 @Service
 public class GameRecordInningService {
@@ -125,6 +126,28 @@ public class GameRecordInningService {
 			throw new Exception();
 		}
 		
+		// 상대방의 Game Record에도 승/무/패를 update한다.
+		{
+			GameRecord dto = new GameRecord();
+			dto.setGameNo(gameRecord.getGameNo());
+			List<GameRecord> gameRecordList = gameRecordService.selectByExample(dto);
+			for (GameRecord temp : gameRecordList) {
+				if(temp.getCustNo() != gameRecord.getCustNo()){
+					GameRecord againstDto = new GameRecord();
+					againstDto.setGameRecNo(temp.getGameRecNo());
+					if(StringUtils.getInt(record.getDrawCnt()) > 0){
+						againstDto.setDrawCnt(1);
+					}else if(StringUtils.getInt(record.getWinCnt()) > 0){
+						againstDto.setLoseCnt(1);
+					}else if(StringUtils.getInt(record.getLoseCnt()) > 0){
+						againstDto.setWinCnt(1);
+					}
+					gameRecordService.updateByPrimaryKeySelective(againstDto);
+					break;
+				}
+			}
+		}
+		
 		// 게임 상태를 종료로 Update
 		GameMst gameMst = new GameMst();
 		gameMst.setGameNo(gameRecord.getGameNo());
@@ -138,10 +161,6 @@ public class GameRecordInningService {
 			throw new Exception();
 		}
 		
-		/**
-		 * game_record 테이블을 update한다.
-		 * 1) 득점/에버/하이런/승,무,패여부
-		 */
 		return 1;
 	}
 

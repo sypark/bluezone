@@ -42,12 +42,15 @@ public class GameRecordService {
 		return gameRecordRepository.selectByExample(example);
 	}
 
-	public List<GameCustComp> selectGameWithCustInfo(Integer gameNo) {
-		return gameRecordRepository.selectGameWithCustInfo(gameNo);
-	}
-
 	public int updateByPrimaryKeySelective(GameRecord gameRecord){
 		return gameRecordRepository.updateByPrimaryKeySelective(gameRecord);
 	}
 
+	public List<GameCustComp> selectGameWithCustInfo(Integer gameNo) {
+		return gameRecordRepository.selectGameWithCustInfo(gameNo);
+	}
+	
+	public List<GameCustComp> selectTotalCustGameRecordList(Integer custNo) {
+		return gameRecordRepository.selectTotalCustGameRecordList(custNo);
+	}
 }

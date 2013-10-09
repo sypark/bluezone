@@ -123,8 +123,8 @@ Main.runLineChart2();
 									<%for(AnalysisCustRecord gnalysisCustRecord : againstList){ %>
 										<tr>
 											<td class="lbl" style="width:36%;"><%=gnalysisCustRecord.getNickName()%></td>
-											<td class="lbl" style="width:15%;"><span class="label label-info arrowed-right arrowed-in"><%=gnalysisCustRecord.getSumWinCnt()%>승</span></td>
-											<td class="lbl" style="width:15%;"><span class="label label-success arrowed-in arrowed-in-right"><%=gnalysisCustRecord.getSumLoseCnt()%>패</span></td>
+											<td class="lbl" style="width:15%;"><span class="label label-info arrowed-right arrowed-in"><%=gnalysisCustRecord.getSumLoseCnt()%>승</span></td>
+											<td class="lbl" style="width:15%;"><span class="label label-success arrowed-in arrowed-in-right"><%=gnalysisCustRecord.getSumWinCnt()%>패</span></td>
 											<td class="lbl" style="width:15%;"><span class="label label-danger arrowed"><%=gnalysisCustRecord.getSumDrawCnt()%>무</span></td>
 										</tr>
 									<%}%>

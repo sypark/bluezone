@@ -63,7 +63,7 @@ var InningRecord={
 		for(var i=0;i<numArr.length;i++){
 			jQuery("input[name=inning_"+numArr[i]+"]").each(function(index){
 				if(index <= InningRecord.inningCnt){
-					jQuery("#inning_"+numArr[i]+"_"+index).attr(attr, val);
+					jQuery("#inning_"+numArr[i]+"_"+(index+1)).attr(attr, val);
 				}
 			});
 		}
@@ -175,12 +175,40 @@ var InningRecord={
 	        			location.href="/main.do";
 	        		}else{
 	        			alert("데이터 입력이 실패하였습니다.\n다시 시도하여 주십시오.");
+	        			jQuery("#sendDataModal").modal("hide");
 	        			return;
 	        		}
 	        	}
 	        },   
 	        error:function(e){  
 	            alert(e.responseText);  
+	        }
+	    });
+	},
+	ajaxDeleteGame:function(){
+
+		var url = "/game/ajaxDeleteGame.do";
+		var params= new function(){
+			this.gameNo = jQuery("#gameNo").val();
+		};
+		
+		jQuery.ajax({      
+	        type:"GET",
+	        url:url,
+	        data:params,
+	        async:true,
+	        timeout:3000,
+	        success:function(data){
+	        	if(data == "1"){
+	        		location.href="/main.do";
+	        	}else{
+	        		alert("데이터 저장시 오류 발생.\n다시 삭제해주세요.");
+	        	}
+	        },   
+	        error:function(e){  
+	            alert(e.responseText);  
+	        },
+	        complete:function(){
 	        }
 	    });
 	}
@@ -198,12 +226,23 @@ jQuery(document).ready(function(){
 		});
 	}
 	jQuery("input[name=inning_0]").blur(function(){
+		if(isNaN(jQuery(this).val()) == true){
+			alert("숫자만 입력가능합니다.");
+			jQuery(this).val("");
+			return;
+		}
+		
 		InningRecord.genAllScore();
 		
 		// DB 기록
 		var elementId = this.id;
 		var inningNum = elementId.substring(elementId.lastIndexOf("_")+1);
 		InningRecord.ajaxCreateGameInning("0", inningNum);
+		
+		if(jQuery("#score0").val() == jQuery("#total_score_0").val()){
+			alert(jQuery("#score0").val() + "점을 득점하셨습니다.");
+		}
+		
 	});
 	jQuery("input[name=inning_1]").blur(function(){
 		InningRecord.genAllScore();
@@ -272,6 +311,13 @@ jQuery(document).ready(function(){
 			if(confirm("총 득점이 참가자분들의 점수와 불일치합니다.\n그래도 전송하시겠습니까?")){
 				InningRecord.ajaxSendInningData();
 			}
+		}else{
+			InningRecord.ajaxSendInningData();
+		}
+	});
+	jQuery("#btn_delete_game").click(function(){
+		if(confirm("게임을 삭제하시겠습니까?")){
+			InningRecord.ajaxDeleteGame();
 		}
 	});
 	// 게임참여자일 경우 본인의 게임만 editable

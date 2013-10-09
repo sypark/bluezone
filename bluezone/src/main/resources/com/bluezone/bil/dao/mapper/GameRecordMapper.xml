@@ -49,6 +49,9 @@
     <result column="CUST_WIN_CNT" property="custWinCnt" jdbcType="INTEGER" />
     <result column="CUST_LOSE_CNT" property="custLoseCnt" jdbcType="INTEGER" />
     <result column="CUST_DRAW_CNT" property="custDrawCnt" jdbcType="INTEGER" />
+    <result column="GAME_NM" property="gameNm" jdbcType="VARCHAR" />
+    <result column="GAME_DT" property="gameDt" jdbcType="VARCHAR" />
+    <result column="INNING_CNT" property="inningCnt" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
@@ -468,7 +471,7 @@
     where GAME_REC_NO = #{gameRecNo,jdbcType=INTEGER}
   </update>
   
-  <select id="selectGameWithCustInfo" resultMap="CustCompResultMap" parameterType="java.lang.Integer" >
+  <select id="selectGameWithCustInfo" parameterType="java.lang.Integer" resultMap="CustCompResultMap" >
   SELECT A.*,
         B.CUST_NM,
         B.EMAIL,
@@ -487,4 +490,35 @@
   AND A.CUST_NO = B.CUST_NO
   AND B.USE_YN = 'Y'
   </select>
+  <select id="selectTotalCustGameRecordList" parameterType="java.lang.Integer" resultMap="CustCompResultMap"  >
+  	SELECT B.GAME_DT,
+	        B.GAME_NM,
+	        B.INNING_CNT,
+			(SELECT BB.NICK_NAME
+			   FROM GAME_RECORD AA,
+					  CST_CUST_MST BB
+			WHERE AA.GAME_NO = A.GAME_NO
+	          AND AA.CUST_NO = BB.CUST_NO
+	          AND BB.CUST_NO != A.CUST_NO
+	          LIMIT 0,1
+	         ) AS NICK_NAME,
+	         (SELECT aa.score
+			   FROM GAME_RECORD AA,
+					CST_CUST_MST BB
+			WHERE AA.GAME_NO = A.GAME_NO
+	          AND AA.CUST_NO = BB.CUST_NO
+	          AND BB.CUST_NO != A.CUST_NO
+			  LIMIT 0,1
+	         ) AS CUST_SCORE,
+	        A.*
+	FROM
+		GAME_RECORD A,
+		GAME_MST B,
+	    CST_CUST_MST C
+	WHERE A.CUST_NO = #{custNo,jdbcType=INTEGER}
+	  AND A.GAME_NO = B.GAME_NO
+	  AND B.STATUS = 'E'
+	  AND A.CUST_NO = C.CUST_NO
+	ORDER BY B.REG_DTM DESC
+	</select>
 </mapper>

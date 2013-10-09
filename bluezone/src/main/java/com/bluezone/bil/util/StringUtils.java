@@ -51,4 +51,10 @@ public class StringUtils {
 			return new Float(f).floatValue();
 	}
 	
+	public static String getDateYYYYMMDD(String date, String delim){
+		if(date == null || "".equals(date) || date.length() < 8)
+			return date;
+		return date.substring(0,4) + delim + date.substring(4,6) + delim + date.substring(6,8);
+	}
+	
 }

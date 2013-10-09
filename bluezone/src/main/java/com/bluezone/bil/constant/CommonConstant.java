@@ -3,8 +3,9 @@ package com.bluezone.bil.constant;
 public class CommonConstant {
 
 	public final static String SYSTEM_ID="system";
-	public final static String COOKIE_CUST_NO="custNo";
+	public final static String COOKIE_CUST_NO="custno";
 	public final static String COOKIE_LOGIN="login";
+	public final static String COOKIE_CUST_LEVEL="custlevel";
 	
 	public final static String DATE_FORMAT_YYYYMMDD="yyyyMMdd";
 	

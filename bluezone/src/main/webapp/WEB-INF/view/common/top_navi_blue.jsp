@@ -2,8 +2,16 @@
 <%@page import="com.bluezone.bil.util.cookie.CookieMgr" %>
 <link href="/static/css/bluezone.css" rel="stylesheet" media="screen">
 <script src="/static/js/cust/cust_login.js"></script>
-	<a href="/main.do"><img src="/static/img/bluezone_banner.jpg" class="img-polaroid"></a>
-	<p style="margin-top:5px;position: relative;"></p>
+	<div class="logobar logobar-fixed-top bs-docs-nav" role="banner">
+		<div class="conjtainer">
+			<!-- Menu button for smallar screens -->
+	     	<div class="logobar-header">
+			<!-- Site name for smallar screens -->
+			<a href="index.html" class="logobar-brand">Blue Club</a>
+	     	<span class="logobar-image" id="logobar-image">Naver Carom 3Cushion Billiard Club</span>
+			</div>
+		</div>
+	</div>
 	<div class="navbar navbar-default" id="navbar">
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left" style="margin:12px 0 0 0;">

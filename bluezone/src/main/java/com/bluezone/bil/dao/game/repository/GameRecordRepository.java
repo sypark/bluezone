@@ -25,15 +25,19 @@ public class GameRecordRepository {
 		return sqlSession.getMapper(GameRecordMapper.class).selectByExample(example);
 	}
 
-	public List<GameCustComp> selectGameWithCustInfo(Integer gameNo) {
-		return sqlSession.getMapper(GameRecordMapper.class).selectGameWithCustInfo(gameNo);
-	}
-	
 	public GameRecord selectByPrimaryKey(Integer gameRecNo) {
 		return sqlSession.getMapper(GameRecordMapper.class).selectByPrimaryKey(gameRecNo);
 	}
 	
 	public int updateByPrimaryKeySelective(GameRecord record) {
 		return sqlSession.getMapper(GameRecordMapper.class).updateByPrimaryKeySelective(record);
+	}
+	
+	public List<GameCustComp> selectGameWithCustInfo(Integer gameNo) {
+		return sqlSession.getMapper(GameRecordMapper.class).selectGameWithCustInfo(gameNo);
+	}
+	
+	public List<GameCustComp> selectTotalCustGameRecordList(Integer custNo) {
+		return sqlSession.getMapper(GameRecordMapper.class).selectTotalCustGameRecordList(custNo);
 	}
 }

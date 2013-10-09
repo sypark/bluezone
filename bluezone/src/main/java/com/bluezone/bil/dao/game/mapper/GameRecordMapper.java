@@ -98,4 +98,6 @@ public interface GameRecordMapper {
     int updateByPrimaryKey(GameRecord record);
 
 	List<GameCustComp> selectGameWithCustInfo(Integer gameNo);
+	
+	List<GameCustComp> selectTotalCustGameRecordList(Integer custNo);
 }

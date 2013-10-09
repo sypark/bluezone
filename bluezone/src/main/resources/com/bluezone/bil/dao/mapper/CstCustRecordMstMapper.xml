@@ -30,7 +30,7 @@
     <result column="SUM_EARN_SCORE" property="sumEarnScore" jdbcType="INTEGER" />
     <result column="MAX_HIGH_RUN" property="maxHighRun" jdbcType="INTEGER" />
     <result column="SUM_WIN_CNT" property="sumWinCnt" jdbcType="INTEGER" />
-    <result column="SUM_WIN_CNT" property="sumLoseCnt" jdbcType="INTEGER" />
+    <result column="SUM_LOSE_CNT" property="sumLoseCnt" jdbcType="INTEGER" />
     <result column="SUM_DRAW_CNT" property="sumDrawCnt" jdbcType="INTEGER" />
   </resultMap>
   
@@ -442,9 +442,12 @@
 					FROM   GAME_RECORD GR
 					WHERE  GR.CUST_NO = #{custNo,jdbcType=INTEGER}
 				) A,
-				GAME_RECORD B
+				GAME_RECORD B,
+				GAME_MST C
 			WHERE A.GAME_NO = B.GAME_NO
 			  AND B.CUST_NO != A.CUST_NO
+			  AND B.GAME_NO = C.GAME_NO
+			  AND C.STATUS = 'E'
 			GROUP BY B.CUST_NO) AA,
 	    	CST_CUST_MST CCM,
 	    	CST_CUST_RECORD_MST CCRM

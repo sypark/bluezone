@@ -17,6 +17,7 @@ import com.bluezone.bil.domain.cust.CstCustMst;
 import com.bluezone.bil.domain.cust.CstCustRecordMst;
 import com.bluezone.bil.service.cust.CstCustMstService;
 import com.bluezone.bil.service.cust.CstCustRecordMstService;
+import com.bluezone.bil.service.game.GameRecordService;
 import com.bluezone.bil.util.DateUtils;
 import com.bluezone.bil.util.cookie.CookieMgr;
 import com.bluezone.bil.util.cookie.CookieUtils;
@@ -29,6 +30,9 @@ public class CstCustController {
 	
 	@Autowired
 	private CstCustRecordMstService cstCustRecordMstService;
+	
+	@Autowired
+	private GameRecordService gameRecordService;
 
 	
 	@RequestMapping(value="/cust/insForm.do")
@@ -123,15 +127,17 @@ public class CstCustController {
 		cstCustMst.setPasswd(passwd);
 		cstCustMst.setUseYn("Y");
 		
-		Integer custNo = cstCustMstService.loginChk(cstCustMst);
+		cstCustMst = cstCustMstService.loginChk(cstCustMst);
 		
-		if(custNo.intValue() > 0){
+		boolean isLogin = false;
+		if(cstCustMst != null && cstCustMst.getCustNo() > 0){
 			// 쿠키값 생성
 			CookieUtils cookieUtils = new CookieUtils();
-			cookieUtils.createCookie(request, response, custNo);
+			cookieUtils.createCookie(request, response, cstCustMst);
+			isLogin = true;
 		}
 		
-		return (custNo > 0 ? "1":"0");
+		return (isLogin ? "1":"0");
 	}
 	
 	@RequestMapping(value="/cust/ajaxCustInfo.do")
@@ -146,5 +152,14 @@ public class CstCustController {
 		}
 	}
 	
-	
+	@RequestMapping(value="/cust/recordList.do")
+	public ModelAndView recordList(HttpServletRequest request, HttpServletResponse response){
+		
+		int custNo = CookieMgr.getCustNo(request);
+		
+		ModelAndView mav = new ModelAndView("cust/custRecordList");
+		mav.addObject("gameRecordList", gameRecordService.selectTotalCustGameRecordList(custNo));
+		
+		return mav;
+	}
 }

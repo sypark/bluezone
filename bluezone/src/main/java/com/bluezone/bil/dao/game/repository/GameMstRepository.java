@@ -31,4 +31,8 @@ public class GameMstRepository {
 	public int updateByPrimaryKeySelective(GameMst record) {
 		return sqlSession.getMapper(GameMstMapper.class).updateByPrimaryKeySelective(record);
 	}
+	
+	public int deleteByPrimaryKey(Integer gameNo){
+		return sqlSession.getMapper(GameMstMapper.class).deleteByPrimaryKey(gameNo);
+	}
 }

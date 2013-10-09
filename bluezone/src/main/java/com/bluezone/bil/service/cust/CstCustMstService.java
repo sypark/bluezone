@@ -64,7 +64,7 @@ public class CstCustMstService {
 		return cstCustMstRepository.selectByExample(example);
 	}
 
-	public int loginChk(CstCustMst cstCustMst) {
+	public CstCustMst loginChk(CstCustMst cstCustMst) {
 		CstCustMstExample example = new CstCustMstExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andEmailEqualTo(cstCustMst.getEmail());
@@ -73,9 +73,9 @@ public class CstCustMstService {
 		List<CstCustMst> list = cstCustMstRepository.selectByExample(example);
 		
 		if(list != null && list.size() == 1){
-			return list.get(0).getCustNo();
+			return list.get(0);
 		}else{
-			return 0;
+			return null;
 		}
 	}
 }

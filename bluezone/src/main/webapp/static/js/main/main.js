@@ -32,7 +32,7 @@ var Main={
 		arrayData[0] = ['회차', '점수', '하이런'];
 		if(recentRecordData != null){
 			for(var i=0 ; i < recentRecordData.length && i < 10 ; i++){
-				arrayData[i+1] = [recentRecordData[i].strRegDtm,  Util.getInt(recentRecordData[i].earnScore), Util.getInt(recentRecordData[i].highRun)];
+				arrayData[i+1] = [Util.viewDate(recentRecordData[i].strRegDtm),  Util.getInt(recentRecordData[i].earnScore), Util.getInt(recentRecordData[i].highRun)];
 			}
 		}
 		
@@ -52,7 +52,7 @@ var Main={
 		arrayData[0] = ['회차', 'AVG'];
 		if(recentRecordData != null){
 			for(var i=0 ; i < recentRecordData.length && i < 10 ; i++){
-				arrayData[i+1] = [recentRecordData[i].strRegDtm,  Util.getInt(recentRecordData[i].avg)];
+				arrayData[i+1] = [Util.viewDate(recentRecordData[i].strRegDtm),  Util.getFloat(recentRecordData[i].avg)];
 			}
 		}
 		
@@ -66,7 +66,6 @@ var Main={
 	},
 	ajaxRecentRecordList:function(){
 		var url = "/main/ajaxRecentRecordList.do";
-		var recentRecordData = null;
 		jQuery.ajax({      
 	        type:"POST",
 	        url:url,
@@ -111,6 +110,20 @@ var Util={
 			return 0;
 		}else{
 			return parseInt(data);
+		}
+	},
+	getFloat:function(data){
+		if(data == undefined || data == null || data == "" || isNaN(data) == true){
+			return 0;
+		}else{
+			return parseFloat(data);
+		}
+	},
+	viewDate:function(str){
+		if(str != null && str != "" && str.length >= 8){
+			return str.substring(4,6) + "/" + str.substring(6,8);
+		}else{
+			return str;
 		}
 	}
 };

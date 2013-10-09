@@ -13,6 +13,9 @@ public class GameCustComp extends GameRecord{
 	private Integer custWinCnt;
 	private Integer custLoseCnt;
 	private Integer custDrawCnt;
+	private String gameNm;
+	private String gameDt;
+	private Integer inningCnt;
 	
 	public Integer getCustNo() {
 		return custNo;
@@ -79,6 +82,24 @@ public class GameCustComp extends GameRecord{
 	}
 	public void setCustDrawCnt(Integer custDrawCnt) {
 		this.custDrawCnt = custDrawCnt;
+	}
+	public String getGameNm() {
+		return gameNm;
+	}
+	public void setGameNm(String gameNm) {
+		this.gameNm = gameNm;
+	}
+	public String getGameDt() {
+		return gameDt;
+	}
+	public void setGameDt(String gameDt) {
+		this.gameDt = gameDt;
+	}
+	public Integer getInningCnt() {
+		return inningCnt;
+	}
+	public void setInningCnt(Integer inningCnt) {
+		this.inningCnt = inningCnt;
 	}
 	
 }

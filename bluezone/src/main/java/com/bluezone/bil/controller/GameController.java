@@ -92,4 +92,11 @@ public class GameController {
 			return "0";
 		}
 	}
+	
+	@RequestMapping(value="/game/ajaxDeleteGame.do")
+	public @ResponseBody Object ajaxDeleteGame(@RequestParam("gameNo") Integer gameNo,
+			HttpServletRequest request, HttpServletResponse response){
+		
+		return gameMstService.deleteByPrimaryKey(gameNo);
+	}
 }

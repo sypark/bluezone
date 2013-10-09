@@ -1,6 +1,9 @@
+a{
+	text-decoration: none;
+}
 #inning_summary{position: fixed;
 	left:50%;
-	top:335px;
+	top:100px;
 	margin-left:0px;
 	text-align:center;
 	width:460px;
@@ -11,11 +14,50 @@ hr { border-top:1px solid #9C9C9C; border-bottom:1px solid #F6F6F6; }
 	color:darkblue;
 }
 .login-wrapper  h3 {
-line-height: 40px;
-margin: 0;
-padding: 0;
-// color: #f74e4d;
-color: #4D54F7;
+	line-height: 40px;
+	margin: 0;
+	padding: 0;
+	// color: #f74e4d;
+	color: #4D54F7;
+}
+.logobar {
+	background-color: #f8f8f8;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f2f2f2));
+	background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background: -ms-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background: linear-gradient(top, #f8f8f8, #f2f2f2);
+	border-bottom: 1px solid #ddd;
+	box-shadow: inset 0px 1px 1px #fff;
+	height:40px;
+}
+.logobar .logobar-image{
+	float:right;
+	height:10px;
+	align:right;
+	margin:10px 0px 0 0;
+	font-size:12px;
+	font-weight:normal;
+	font-family:monospace;
+	font-style:normal;
+}
+.logobar-fixed-top {
+	top: 0;
+	z-index: 1030;
+}
+.logobar-brand:hover, .logobar-brand:link{
+	color: blue;
+	text-decoration: none;
+}
+.logobar-header{
+	padding: 10px 5px;
+	font-size: 25px;
+	color: blue;
+	text-decoration: none;
+	font-weight: bold;
+	font-family:serif;
+	font-style:italic;
 }
 .ace-nav li:last-child a [class^="icon-caret"] {
 display: inline-block;
@@ -331,6 +373,22 @@ background-color: rgb(130, 175, 111);
 	line-height: 14px;
 	min-width: 16px;
 	margin-right: 1px;
+}
+.tableList01 {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.tableList01 th,
+.tableList01 td {
+  padding: 2px 9px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
 }
 .grey {color: #777!important;}
 .dark{color:#333!important}.white{color:#fff!important}.red{color:#dd5a43!important}
