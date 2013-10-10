@@ -84,5 +84,9 @@ public class GameMstService {
 	public int deleteByPrimaryKey(Integer gameNo) {
 		return gameMstRepository.deleteByPrimaryKey(gameNo);
 	}
+	
+	public List<GameMst>  custGameList(Integer custNo){
+		return gameMstRepository.custGameList(custNo);
+	}
 
 }

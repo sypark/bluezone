@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bluezone.bil.dao.game.repository.MatchMstRepository;
-import com.bluezone.bil.domain.game.GameMst;
 import com.bluezone.bil.domain.game.MatchMst;
 import com.bluezone.bil.domain.game.MatchMstExample;
 import com.bluezone.bil.domain.game.MatchMstExample.Criteria;
@@ -44,5 +43,9 @@ public class MatchMstService {
 
 	public int insert(MatchMst matchMst) {
 		return matchMstRepository.insert(matchMst);
+	}
+	
+	public List<MatchMst> custMatchList(Integer custNo){
+		return matchMstRepository.custMatchList(custNo);
 	}
 }

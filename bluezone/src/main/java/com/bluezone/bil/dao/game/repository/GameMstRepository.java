@@ -35,4 +35,8 @@ public class GameMstRepository {
 	public int deleteByPrimaryKey(Integer gameNo){
 		return sqlSession.getMapper(GameMstMapper.class).deleteByPrimaryKey(gameNo);
 	}
+	
+	public List<GameMst>  custGameList(Integer custNo){
+		return sqlSession.getMapper(GameMstMapper.class).custGameList(custNo);
+	}
 }

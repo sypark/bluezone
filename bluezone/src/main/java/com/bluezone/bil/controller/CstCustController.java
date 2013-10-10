@@ -3,6 +3,7 @@ package com.bluezone.bil.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,9 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bluezone.bil.constant.CommonConstant;
 import com.bluezone.bil.domain.cust.CstCustMst;
 import com.bluezone.bil.domain.cust.CstCustRecordMst;
+import com.bluezone.bil.domain.game.GameCustComp;
 import com.bluezone.bil.service.cust.CstCustMstService;
 import com.bluezone.bil.service.cust.CstCustRecordMstService;
+import com.bluezone.bil.service.game.GameMstService;
 import com.bluezone.bil.service.game.GameRecordService;
+import com.bluezone.bil.service.game.MatchMstService;
 import com.bluezone.bil.util.DateUtils;
 import com.bluezone.bil.util.cookie.CookieMgr;
 import com.bluezone.bil.util.cookie.CookieUtils;
@@ -32,7 +36,13 @@ public class CstCustController {
 	private CstCustRecordMstService cstCustRecordMstService;
 	
 	@Autowired
+	private GameMstService gameMstService;
+
+	@Autowired
 	private GameRecordService gameRecordService;
+	
+	@Autowired
+	private MatchMstService matchMstService;
 
 	
 	@RequestMapping(value="/cust/insForm.do")
@@ -153,12 +163,19 @@ public class CstCustController {
 	}
 	
 	@RequestMapping(value="/cust/recordList.do")
-	public ModelAndView recordList(HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView recordList(@Param("matchNo") Integer matchNo, 
+			@Param("gameNo") Integer gameNo,
+			HttpServletRequest request, HttpServletResponse response){
 		
 		int custNo = CookieMgr.getCustNo(request);
 		
+		GameCustComp gameCustComp = new GameCustComp();
+		gameCustComp.setCustNo(custNo);
+		gameCustComp.setGameNo(gameNo);
+		gameCustComp.setMatchNo(matchNo);
+		
 		ModelAndView mav = new ModelAndView("cust/custRecordList");
-		mav.addObject("gameRecordList", gameRecordService.selectTotalCustGameRecordList(custNo));
+		mav.addObject("gameRecordList", gameRecordService.selectTotalCustGameRecordList(gameCustComp));
 		
 		return mav;
 	}
@@ -168,7 +185,8 @@ public class CstCustController {
 		int custNo = CookieMgr.getCustNo(request);
 		
 		ModelAndView mav = new ModelAndView("cust/custRecordLeftMenu");
-		
+		mav.addObject("custMatchList", matchMstService.custMatchList(custNo));
+		mav.addObject("custGameList", gameMstService.custGameList(custNo));
 		return mav;
 	}
 }

@@ -95,4 +95,6 @@ public interface MatchMstMapper {
      * @mbggenerated Thu Oct 03 17:27:29 KST 2013
      */
     int updateByPrimaryKey(MatchMst record);
+    
+    List<MatchMst> custMatchList(Integer custNo);
 }

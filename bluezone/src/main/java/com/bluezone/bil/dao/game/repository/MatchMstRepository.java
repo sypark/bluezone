@@ -28,4 +28,7 @@ public class MatchMstRepository {
 		return sqlSession.getMapper(MatchMstMapper.class).insert(record);
 	}
 
+	public List<MatchMst> custMatchList(Integer custNo){
+		return sqlSession.getMapper(MatchMstMapper.class).custMatchList(custNo);
+	}
 }

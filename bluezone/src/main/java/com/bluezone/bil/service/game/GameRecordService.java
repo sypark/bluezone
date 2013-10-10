@@ -50,7 +50,7 @@ public class GameRecordService {
 		return gameRecordRepository.selectGameWithCustInfo(gameNo);
 	}
 	
-	public List<GameCustComp> selectTotalCustGameRecordList(Integer custNo) {
-		return gameRecordRepository.selectTotalCustGameRecordList(custNo);
+	public List<GameCustComp> selectTotalCustGameRecordList(GameCustComp gameCustComp) {
+		return gameRecordRepository.selectTotalCustGameRecordList(gameCustComp);
 	}
 }

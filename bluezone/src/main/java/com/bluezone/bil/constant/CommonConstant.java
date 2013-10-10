@@ -18,6 +18,9 @@ public class CommonConstant {
 	public final static int CUST_GRADE_STAFF = 2;
 	public final static int CUST_GRADE_NORMAL = 3;
 	
+	public final static String MATCH_TYPE_REGULAR = "1";
+	public final static String MATCH_TYPE_SPOT = "2";
+	
 	public static enum CUST_SEX {M, F;}
 	public static enum GAME_RSLT {win, lose, draw;}
 	

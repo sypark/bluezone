@@ -28,6 +28,7 @@
 		
 		<div class="row-fluid">
 	        <div class="span2">
+	        <jsp:include page="/cust/leftmenu.do"/>
 			</div><!-- // span2 -->
 			<div class="span10">
 			<%if(gameRecordList != null){ %>

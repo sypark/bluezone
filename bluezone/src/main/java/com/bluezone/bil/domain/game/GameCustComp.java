@@ -16,6 +16,7 @@ public class GameCustComp extends GameRecord{
 	private String gameNm;
 	private String gameDt;
 	private Integer inningCnt;
+	private Integer matchNo;
 	
 	public Integer getCustNo() {
 		return custNo;
@@ -100,6 +101,12 @@ public class GameCustComp extends GameRecord{
 	}
 	public void setInningCnt(Integer inningCnt) {
 		this.inningCnt = inningCnt;
+	}
+	public Integer getMatchNo() {
+		return matchNo;
+	}
+	public void setMatchNo(Integer matchNo) {
+		this.matchNo = matchNo;
 	}
 	
 }

@@ -393,4 +393,17 @@
       MATCH_TYPE = #{matchType,jdbcType=VARCHAR}
     where MATCH_NO = #{matchNo,jdbcType=INTEGER}
   </update>
+  <select id="custMatchList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT A.*
+	FROM   MATCH_MST A
+	WHERE  MATCH_NO IN (
+		SELECT B.MATCH_NO
+		FROM   GAME_RECORD A,
+				  GAME_MST B
+		WHERE  A.CUST_NO = #{custNo, jdbcType=INTEGER}
+		  AND  A.GAME_NO = B.GAME_NO
+		  AND  B.STATUS = 'E'
+	)
+	ORDER BY END_DT DESC
+  </select>
 </mapper>

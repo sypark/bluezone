@@ -490,7 +490,7 @@
   AND A.CUST_NO = B.CUST_NO
   AND B.USE_YN = 'Y'
   </select>
-  <select id="selectTotalCustGameRecordList" parameterType="java.lang.Integer" resultMap="CustCompResultMap"  >
+  <select id="selectTotalCustGameRecordList" parameterType="com.bluezone.bil.domain.game.GameCustComp" resultMap="CustCompResultMap"  >
   	SELECT B.GAME_DT,
 	        B.GAME_NM,
 	        B.INNING_CNT,
@@ -519,6 +519,12 @@
 	  AND A.GAME_NO = B.GAME_NO
 	  AND B.STATUS = 'E'
 	  AND A.CUST_NO = C.CUST_NO
+	  <if test="gameNo != null" >
+	  AND B.GAME_NO = #{gameNo,jdbcType=INTEGER}
+	  </if>
+	  <if test="matchNo != null" >
+	  AND B.MATCH_NO = #{matchNo,jdbcType=INTEGER}
+	  </if>
 	ORDER BY B.REG_DTM DESC
 	</select>
 </mapper>

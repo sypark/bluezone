@@ -95,4 +95,6 @@ public interface GameMstMapper {
      * @mbggenerated Thu Oct 03 16:40:45 KST 2013
      */
     int updateByPrimaryKey(GameMst record);
+    
+    List<GameMst>  custGameList(Integer custNo);
 }

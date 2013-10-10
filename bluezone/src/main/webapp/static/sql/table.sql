@@ -122,6 +122,9 @@ CREATE UNIQUE INDEX IX_GAME_RECORD_INNING_01 ON GAME_RECORD_INNING ( GAME_REC_NO
 insert into match_mst (Reg_DTM, REGR_ID, UPD_DTM, UPDR_ID, MATCH_NM, std_dt, end_dt, YYYYMM, WEEK, MATCH_TYPE,use_yn)
 values(sysdate(),'system',sysdate(),'system','15회정기대회','20130930','20131001','201309','5', '1','Y');
 
+insert into match_mst (Reg_DTM, REGR_ID, UPD_DTM, UPDR_ID, MATCH_NM, std_dt, end_dt, YYYYMM, WEEK, MATCH_TYPE,use_yn)
+values(sysdate(),'system',sysdate(),'system','상시대회','20130930','20131001','201309','5', '2','Y');
+
 insert into game_mst (Reg_DTM, REGR_ID, UPD_DTM, UPDR_ID, MATCH_no, game_nm, use_yn, game_dt, mem_cnt, inning_cnt)
 values(sysdate(),'system',sysdate(),'system', 1, 'test game', 'Y', '20130929', 2, 40);
 

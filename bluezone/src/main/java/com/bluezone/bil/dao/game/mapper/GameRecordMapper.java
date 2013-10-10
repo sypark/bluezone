@@ -99,5 +99,5 @@ public interface GameRecordMapper {
 
 	List<GameCustComp> selectGameWithCustInfo(Integer gameNo);
 	
-	List<GameCustComp> selectTotalCustGameRecordList(Integer custNo);
+	List<GameCustComp> selectTotalCustGameRecordList(GameCustComp gameCustComp);
 }

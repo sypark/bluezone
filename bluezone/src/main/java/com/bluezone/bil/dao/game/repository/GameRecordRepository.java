@@ -37,7 +37,7 @@ public class GameRecordRepository {
 		return sqlSession.getMapper(GameRecordMapper.class).selectGameWithCustInfo(gameNo);
 	}
 	
-	public List<GameCustComp> selectTotalCustGameRecordList(Integer custNo) {
-		return sqlSession.getMapper(GameRecordMapper.class).selectTotalCustGameRecordList(custNo);
+	public List<GameCustComp> selectTotalCustGameRecordList(GameCustComp gameCustComp) {
+		return sqlSession.getMapper(GameRecordMapper.class).selectTotalCustGameRecordList(gameCustComp);
 	}
 }
