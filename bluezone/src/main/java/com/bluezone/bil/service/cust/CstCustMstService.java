@@ -12,6 +12,8 @@ import com.bluezone.bil.domain.cust.CstCustMst;
 import com.bluezone.bil.domain.cust.CstCustMstExample;
 import com.bluezone.bil.domain.cust.CstCustMstExample.Criteria;
 import com.bluezone.bil.domain.cust.CstCustRecordMst;
+import com.bluezone.bil.domain.game.GameRecord;
+import com.bluezone.bil.service.game.GameRecordService;
 
 @Service
 public class CstCustMstService {
@@ -21,6 +23,9 @@ public class CstCustMstService {
 	
 	@Autowired
 	private CstCustRecordMstRepository cstCustRecordMstRepository;
+	
+	@Autowired
+	private GameRecordService gameRecordService;
 	
 	public CstCustMst dupChkNickName(CstCustMst cstCustMst){
 		return cstCustMstRepository.dupChkNickName(cstCustMst);
@@ -77,5 +82,11 @@ public class CstCustMstService {
 		}else{
 			return null;
 		}
+	}
+	
+	public CstCustMst selectCstCustInfoFromGameRecNo(Integer gameRecNo) {
+		GameRecord gameRecord = gameRecordService.selectByPrimaryKey(gameRecNo);
+		
+		return cstCustMstRepository.selectByPrimaryKey(gameRecord.getCustNo());
 	}
 }

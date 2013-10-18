@@ -93,7 +93,7 @@ jQuery(document).ready(function(){
 		Login.availEmailChk();
 	});
 	jQuery("#click_game_record").click(function(){
-		location.href="/cust/recordList.do";
+		location.href="/cust/gameRecordList.do";
 	});
 	jQuery("#click_create_game").click(function(){
 		location.href="/game/createGame.do";

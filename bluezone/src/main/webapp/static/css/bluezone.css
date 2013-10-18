@@ -1,4 +1,4 @@
-a{
+a:hover{
 	text-decoration: none;
 }
 #inning_summary{position: fixed;
@@ -389,6 +389,96 @@ background-color: rgb(130, 175, 111);
   text-align: left;
   vertical-align: top;
   border-top: 1px solid #dddddd;
+}
+.tableList01 th.cdata,
+.tableList01 td.cdata{
+	text-align:center;
+}
+.table-striped th.cdata,
+.table-striped td.cdata{
+	text-align:center;
+}
+.accordion {
+    padding:0;
+    margin:0;
+}
+
+.accordion a {
+    font-size:13px;
+}
+
+.accordion a:hover {
+    text-decoration: none;
+}
+
+.accordion-group {
+    padding:0;
+    border-width:0;
+    border-bottom-width:1px;
+    border-color:#efefef;
+}
+
+.accordion-heading {
+    padding-top:1px;
+    padding-bottom:1px;
+    padding-left:5px;
+    margin:0;
+    background:#ffffff;
+}
+
+.accordion-heading:hover, .accordion-group:hover {
+    background:#fdfdfd;
+}
+
+.accordion-heading span {
+    width:25px;
+}
+
+.accordion-heading i {
+  font-weight:bold;
+  font-size:20px;
+  color:#fafafa;
+}
+
+.accordion-toggle {
+    padding:4px;
+}
+
+.accordion-inner {
+    padding:4px;
+    background:#fafafa;
+}
+
+.accordion-sub {
+    border-width:0;
+    margin:1px;
+    font-size:12px;
+}
+
+.accordion-sub .accordion-heading {
+    padding:2px;
+    padding-left:5px;
+}
+
+.accordion-sub .accordion-toggle {
+    padding:3px;
+    padding-left:7px;
+}
+
+.accordion-sub .accordion-inner{
+    background: #efefef -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#efefef));
+    background: #efefef -moz-linear-gradient(top, #fff, #efefef);
+    padding:1px;
+    border:1px solid #ffffff;
+}
+.collapse {
+position: relative;
+height: 0;
+overflow: hidden;
+-webkit-transition: height 0.35s ease;
+-moz-transition: height 0.35s ease;
+-o-transition: height 0.35s ease;
+transition: height 0.35s ease;
 }
 .grey {color: #777!important;}
 .dark{color:#333!important}.white{color:#fff!important}.red{color:#dd5a43!important}

@@ -1,5 +1,7 @@
 package com.bluezone.bil.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,9 +19,12 @@ import com.bluezone.bil.constant.CommonConstant;
 import com.bluezone.bil.domain.cust.CstCustMst;
 import com.bluezone.bil.domain.cust.CstCustRecordMst;
 import com.bluezone.bil.domain.game.GameCustComp;
+import com.bluezone.bil.domain.game.GameRecord;
+import com.bluezone.bil.domain.game.GameRecordInning;
 import com.bluezone.bil.service.cust.CstCustMstService;
 import com.bluezone.bil.service.cust.CstCustRecordMstService;
 import com.bluezone.bil.service.game.GameMstService;
+import com.bluezone.bil.service.game.GameRecordInningService;
 import com.bluezone.bil.service.game.GameRecordService;
 import com.bluezone.bil.service.game.MatchMstService;
 import com.bluezone.bil.util.DateUtils;
@@ -36,13 +41,17 @@ public class CstCustController {
 	private CstCustRecordMstService cstCustRecordMstService;
 	
 	@Autowired
+	private MatchMstService matchMstService;
+	
+	@Autowired
 	private GameMstService gameMstService;
 
 	@Autowired
 	private GameRecordService gameRecordService;
 	
 	@Autowired
-	private MatchMstService matchMstService;
+	private GameRecordInningService gameRecordInningService;
+	
 
 	
 	@RequestMapping(value="/cust/insForm.do")
@@ -162,8 +171,8 @@ public class CstCustController {
 		}
 	}
 	
-	@RequestMapping(value="/cust/recordList.do")
-	public ModelAndView recordList(@Param("matchNo") Integer matchNo, 
+	@RequestMapping(value="/cust/gameRecordList.do")
+	public ModelAndView gameRecordList(@Param("matchNo") Integer matchNo, 
 			@Param("gameNo") Integer gameNo,
 			HttpServletRequest request, HttpServletResponse response){
 		
@@ -174,11 +183,36 @@ public class CstCustController {
 		gameCustComp.setGameNo(gameNo);
 		gameCustComp.setMatchNo(matchNo);
 		
-		ModelAndView mav = new ModelAndView("cust/custRecordList");
+		ModelAndView mav = new ModelAndView("cust/gameRecordList");
 		mav.addObject("gameRecordList", gameRecordService.selectTotalCustGameRecordList(gameCustComp));
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/cust/gameRecordInningList.do")
+	public ModelAndView gameRecordInningList(@RequestParam("gameNo") Integer gameNo,
+			@RequestParam("gameRecNo") Integer gameRecNo, 
+			HttpServletRequest request, HttpServletResponse response){
+		
+		GameRecord gameRecord = new GameRecord();
+		gameRecord.setGameNo(gameNo);
+		
+		List<GameRecord> gameRecordList = gameRecordService.selectByExample(gameRecord);
+		
+		ModelAndView mav = new ModelAndView("cust/gameRecordInningList");
+		mav.addObject("gameMst", gameMstService.selectByPrimaryKey(gameNo));
+		mav.addObject("gameRecordList", gameRecordList);
+		
+		String orderByClause = " inning_num asc";
+		for (GameRecord gameRecord2 : gameRecordList) {
+			GameRecordInning gameRecordInning = new GameRecordInning();
+			gameRecordInning.setGameRecNo(gameRecord2.getGameRecNo());
+			mav.addObject("gameRecordInningList"+(gameRecNo == gameRecord2.getGameRecNo() ? "0":"1"), gameRecordInningService.selectByExample(gameRecordInning, orderByClause));
+		}
+		
+		return mav;
+	}
+	
 	@RequestMapping(value="/cust/leftmenu.do")
 	public ModelAndView leftmenu(HttpServletRequest request, HttpServletResponse response){
 		
@@ -188,5 +222,12 @@ public class CstCustController {
 		mav.addObject("custMatchList", matchMstService.custMatchList(custNo));
 		mav.addObject("custGameList", gameMstService.custGameList(custNo));
 		return mav;
+	}
+	
+	@RequestMapping(value="/cust/ajaxSelectCstCustInfoFromGameRecNo.do")
+	public @ResponseBody Object selectCstCustInfoFromGameRecNo(@RequestParam("gameRecNo") Integer gameRecNo,
+			HttpServletRequest request, HttpServletResponse response){
+		
+		return cstCustMstService.selectCstCustInfoFromGameRecNo(gameRecNo);
 	}
 }

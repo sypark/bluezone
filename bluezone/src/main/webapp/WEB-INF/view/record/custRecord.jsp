@@ -1,4 +1,3 @@
-<!DOCTYPE HTML>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.bluezone.bil.domain.cust.CstCustMst" %>
 <%@page import="com.bluezone.bil.domain.cust.CstCustRecordMst" %>

@@ -1,4 +1,3 @@
-<!DOCTYPE HTML>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.List" %>
 <%@page import="com.bluezone.bil.util.StringUtils" %>
@@ -11,24 +10,11 @@
 	List<CstCustMst> cstCustMstList = (List<CstCustMst>)request.getAttribute("cstCustMstList");
 	int custNo = CookieMgr.getCustNo(request);
 %>
-<html>
-<head>
-<title>Main</title>
-<meta charset="utf-8" />
-<meta name="description" content="Draggabble Widget Boxes &amp; Containers" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Bootstrap -->
-<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<script src="/static/js/jquery-1.10.2.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
+<!-- Head -->
+<jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp">
+	<jsp:param name="title" value="게임생성" />
+</jsp:include>
 <script src="/static/js/game/create_game.js"></script>
-</head>
-
-<body>
-	<div class="container">
-		<!-- Body content-->
-		<jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp"></jsp:include>
-		
 		<div class="row-fluid">
         <div class="span12">
         	<div style="margin-left:10px;margin-bottom:10px;font-weight:bold;color:goldenrod;">경기를 선택해 주세요</div>

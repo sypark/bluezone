@@ -1,4 +1,3 @@
-<!DOCTYPE HTML>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.List" %>
 <%@page import="com.bluezone.bil.util.StringUtils" %>
@@ -12,16 +11,11 @@
 	List<AnalysisCustRecord> againstList = (List<AnalysisCustRecord>)request.getAttribute("analysisAgainstRecordList");
 	String earnAvgScore = String.format("%.2f", (analysisCustRecord.getSumEarnScore()/analysisCustRecord.getGameCnt()*1.0f));
 %>
-<html>
-<head>
-<title>Main</title>
-<meta charset="utf-8" />
-<meta name="description" content="Draggabble Widget Boxes &amp; Containers" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Bootstrap -->
-<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<script src="/static/js/jquery-1.10.2.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
+
+<!-- Head -->
+<jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp">
+	<jsp:param name="title" value="메인" />
+</jsp:include>
 <script src="/static/js/google.jsapi.js"></script>
 <script src="/static/js/main/main.js"></script>
 <script>
@@ -35,13 +29,6 @@ Main.ajaxRecentRecordList();
 Main.runLineChart1();
 Main.runLineChart2();
 </script>
-</head>
-
-  <body>
-	<div class="container">
-		<!-- Body content-->
-		<jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp"></jsp:include>
-		
 		<div class="row">
 			<!-- First Row Left -->
 	        <div class="span6">
@@ -113,9 +100,9 @@ Main.runLineChart2();
 									<thead class="thin-border-bottom">
 										<tr>
 											<th class="lbl" style="width:36%;">Nickname</th>
-											<th class="lbl" style="width:15%;">승</th>
-											<th class="lbl" style="width:15%;">무</th>
-											<th class="lbl" style="width:15%;">패</th>
+											<th class="lbl" style="width:15%;text-align:center;">승</th>
+											<th class="lbl" style="width:15%;text-align:center;">무</th>
+											<th class="lbl" style="width:15%;text-align:center;">패</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -123,9 +110,9 @@ Main.runLineChart2();
 									<%for(AnalysisCustRecord gnalysisCustRecord : againstList){ %>
 										<tr>
 											<td class="lbl" style="width:36%;"><%=gnalysisCustRecord.getNickName()%></td>
-											<td class="lbl" style="width:15%;"><span class="label label-info arrowed-right arrowed-in"><%=gnalysisCustRecord.getSumLoseCnt()%>승</span></td>
-											<td class="lbl" style="width:15%;"><span class="label label-success arrowed-in arrowed-in-right"><%=gnalysisCustRecord.getSumWinCnt()%>패</span></td>
-											<td class="lbl" style="width:15%;"><span class="label label-danger arrowed"><%=gnalysisCustRecord.getSumDrawCnt()%>무</span></td>
+											<td class="lbl" style="width:15%;text-align:center;"><span class="label label-info arrowed-right arrowed-in"><%=gnalysisCustRecord.getSumLoseCnt()%>승</span></td>
+											<td class="lbl" style="width:15%;text-align:center;"><span class="label label-success arrowed-in arrowed-in-right"><%=gnalysisCustRecord.getSumWinCnt()%>패</span></td>
+											<td class="lbl" style="width:15%;text-align:center;"><span class="label label-danger arrowed"><%=gnalysisCustRecord.getSumDrawCnt()%>무</span></td>
 										</tr>
 									<%}%>
 									<%}%>

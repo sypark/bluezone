@@ -99,4 +99,5 @@ public interface CstCustMstMapper {
 	CstCustMst dupChkNickName(CstCustMst cstCustMst);
 
 	CstCustMst dupChkEmail(CstCustMst cstCustMst);
+	
 }

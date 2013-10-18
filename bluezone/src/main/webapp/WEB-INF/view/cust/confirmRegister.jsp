@@ -1,4 +1,3 @@
-<!DOCTYPE HTML>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.bluezone.bil.service.cust.CustUtil" %>
 <%@page import="com.bluezone.bil.domain.cust.CstCustMst" %>
@@ -13,21 +12,10 @@
 		cstCustRecordMst = (CstCustRecordMst)request.getAttribute("cstCustRecordMst");
 	}
 %>
-<html>
-<head>
-<title>회원가입</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Bootstrap -->
-<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<script src="/static/js/jquery-1.10.2.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-</head>
-
-  <body>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span12">
-			<jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp"></jsp:include>
+<!-- Head -->
+<jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp">
+	<jsp:param name="title" value="회원가입" />
+</jsp:include>
 			<!--Body content-->
 				<ul class="nav nav-tabs">
 				  <li class="active"> <a href="#">회원가입완료</a></li>

@@ -1,13 +1,30 @@
+<!DOCTYPE HTML>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.bluezone.bil.util.StringUtils" %>
 <%@page import="com.bluezone.bil.util.cookie.CookieMgr" %>
-<link href="/static/css/bluezone.css" rel="stylesheet" media="screen">
+<html>
+<head>
+<title><%=StringUtils.getString(request.getParameter("title"))%></title>
+<meta charset="utf-8" />
+<meta name="description" content="Draggabble Widget Boxes &amp; Containers" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/css/jquery-ui-1.10.0.custom.css" media="screen">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/static/css/bluezone.css" media="screen">
+<script src="/static/js/jquery-1.10.2.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/cust/cust_login.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<!-- Body content-->
 	<div class="logobar logobar-fixed-top bs-docs-nav" role="banner">
 		<div class="conjtainer">
 			<!-- Menu button for smallar screens -->
 	     	<div class="logobar-header">
 			<!-- Site name for smallar screens -->
-			<a href="index.html" class="logobar-brand">Blue Club</a>
+			<a href="/main.do" class="logobar-brand">Blue Club</a>
 	     	<span class="logobar-image" id="logobar-image">Naver Carom 3Cushion Billiard Club</span>
 			</div>
 		</div>

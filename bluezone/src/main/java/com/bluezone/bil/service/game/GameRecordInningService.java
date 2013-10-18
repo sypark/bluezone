@@ -32,8 +32,12 @@ public class GameRecordInningService {
 	
 	@Autowired
 	private GameRecordInningRepository gameRecordInningRepository;
-
+	
 	public List<GameRecordInning> selectByExample(GameRecordInning gameRecordInning) {
+		return selectByExample(gameRecordInning, null);
+	}
+
+	public List<GameRecordInning> selectByExample(GameRecordInning gameRecordInning, String orderByClause) {
 		GameRecordInningExample example = new GameRecordInningExample();
 		Criteria criteria = example.createCriteria();
 		if(gameRecordInning != null){
@@ -42,6 +46,9 @@ public class GameRecordInningService {
 			if(gameRecordInning.getInningNum() != null)
 				criteria.andInningNumEqualTo(gameRecordInning.getInningNum());
 		}
+		
+		if(orderByClause != null)
+			example.setOrderByClause(orderByClause);
 		
 		return gameRecordInningRepository.selectByExample(example);
 	}
