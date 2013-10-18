@@ -33,7 +33,7 @@ Main.runLineChart2();
 			<!-- First Row Left -->
 	        <div class="span6">
 	        	<div style="margin:16px 0 0 5px;">
-	        		<p class="green" style="font-weight:bold;"><i class="icon-flag bigger-130 green"></i> <span class="user-info"><small>Welcome,</small> <%=cstCustMst.getNickName()%></span></p>
+	        		<span class="badge badge-warning" style="display:block;margin-bottom:15px;"><i class="icon-flag icon-white bigger-130" style="margin-top:3px;"></i> <span class="user-info" style="padding-bottom:5px;"><small>Welcome,</small> <%=cstCustMst.getNickName()%></span></span>
 		        	<div class="infobox infobox-green">
 						<div class="infobox-icon">
 							점수.
@@ -59,7 +59,7 @@ Main.runLineChart2();
 							<i class="icon-arrow-up"></i>
 						</div>
 					</div>
-		        	<div class="infobox infobox-red" style="margin:15px 0 0 0;">
+		        	<div class="infobox infobox-red" style="margin:3px 0 0 0;">
 						<div class="infobox-icon">
 							AVG.
 						</div>
@@ -69,7 +69,7 @@ Main.runLineChart2();
 							<div class="infobox-content">experiments</div>
 						</div>
 					</div>
-		        	<div class="infobox infobox-blue2" style="margin:15px 0 0 0;">
+		        	<div class="infobox infobox-blue2" style="margin:3px 0 0 0;">
 		        		<div class="infobox-icon">
 							평균<p>득점.</p>
 						</div>
@@ -84,7 +84,7 @@ Main.runLineChart2();
 			<!-- First Row Right -->
 			<div class="span6">
 				<div style="margin:16px 0 0 5px;">
-					<p class="green" style="font-weight:bold;"><i class="icon-signal bigger-130"></i> <span class="user-info">Your's Total Record(win/lose/draw)</span></p>
+					<span class="badge badge-warning" style="display:block;margin-bottom:15px;"><i class="icon-signal icon-white bigger-130" style="margin-top:3px;"></i> <span class="user-info" style="padding-bottom:5px;">Your's Total Record(win/lose/draw)</span></span>
 		        	<div id="pie_chart_div" style="margin:0 0 0 0px;"></div>
 	        	</div>
 	        </div>
@@ -92,7 +92,7 @@ Main.runLineChart2();
 	        <!-- Second Row Left -->
 	        <div class="span6">
 	        	<div class="win-lose-list">
-	        		<p class="blue" style="font-weight:bold;margin-bottom:20px;"><i class="icon-flag bigger-130"></i> <span class="user-info">Against Total Record List</span></p>
+	        		<span class="badge badge-info" style="display:block;margin-bottom:25px;"><i class="icon-flag icon-white bigger-130" style="margin-top:3px;"></i> <span class="user-info" style="padding-bottom:5px;">Against Total Record List</span></span>
 					<div class="widget-box transparent">
 						<div class="widget-body">
 							<div class="widget-main no-padding">
@@ -127,7 +127,7 @@ Main.runLineChart2();
         	<!-- Second Row Right -->
 	        <div class="span6">
 	        	<div style="margin:30px 0 0 5px;">
-		        	<p class="blue" style="font-weight:bold;"><i class="icon-signal bigger-130"></i> <span class="user-info">Your Recently Record Chart</span></p>
+		        	<span class="badge badge-info" style="display:block;"><i class="icon-signal icon-white bigger-130" style="margin-top:3px;"></i> <span class="user-info" style="padding-bottom:5px;">Your Recently Record Chart</span></span>
 		        	<div id="line_chart_div1" style="margin:0px 0 0 0;"></div>
 		        	<div id="line_chart_div2" style="margin:0px 0 0 0;"></div>
 	        	</div>
