@@ -20,14 +20,12 @@
 	<div class="container">
 		<!-- Body content-->
 	<div class="logobar logobar-fixed-top bs-docs-nav" role="banner">
-		<div class="conjtainer">
 			<!-- Menu button for smallar screens -->
 	     	<div class="logobar-header">
 			<!-- Site name for smallar screens -->
 			<a href="/main.do" class="logobar-brand">Blue Club</a>
-	     	<span class="logobar-image" id="logobar-image">Naver Carom 3Cushion Billiard Club</span>
+	     	<span class="logobar-image" id="logobar-image"><img src="/static/img/bluezone_small_logo.jpg" /></span>
 			</div>
-		</div>
 	</div>
 	<div class="navbar navbar-default" id="navbar">
 		<div class="navbar-container" id="navbar-container">

@@ -28,6 +28,12 @@ public class MainController {
 	@Autowired
 	private GameRecordService gameRecordService;
 	
+	@RequestMapping(value="/")
+	public ModelAndView index(HttpServletRequest request, HttpServletResponse response){
+		
+		return new ModelAndView("redirect:/main.do");
+	}
+	
 	@RequestMapping(value="/main.do")
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response){
 		

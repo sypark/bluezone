@@ -4,13 +4,11 @@
 <jsp:include page="/WEB-INF/view/common/top_navi_blue.jsp">
 	<jsp:param name="title" value="회원가입" />
 </jsp:include>
-			</div>
+<script src="/static/js/cust/cust_insform.js"></script>
 			<!-- row-fluid -->
 			<div class="row-fluid">
 				<div class="span2">
-				<!--Sidebar content-->
-					<i class="icon-tasks"></i> 회원가입
-				<!-- //Sidebar content-->
+				&nbsp;
 				</div>
 				<div class="span10">
 				<!--Body content-->
@@ -84,6 +82,9 @@
 			<!-- //row-fluid -->
 		</div>
 	</div>
+	<!-- Footer -->
+	<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
+	<!-- // Footer -->
   </body>
 </html>
 
