@@ -1,8 +1,5 @@
 package com.ui.mong.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,9 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.bluezone.bil.domain.game.GameMst;
-import com.google.gson.Gson;
 
 @Controller
 public class UiController {
@@ -44,7 +38,7 @@ public class UiController {
 	@RequestMapping(value="/ui/tableJson.do")
 	public @ResponseBody Object tableJson(HttpServletRequest request, HttpServletResponse response){
 		
-		String jsonData = "[{\"clo1\":\"Ajax11\",\"clo2\":\"Ajax22\",\"clo3\":\"@mdo\",\"clo11\":\"<span class='label label-warning'>Expiring</span>\"},{\"clo1\":\"Ajax33\",\"clo2\":\"Ajax44\",\"clo3\":\"@mdo\",\"clo22\":\"<span class='label label-warning'>Expiring</span>\"}]";
+		String jsonData = "[{\"col1\":\"Ajax11\",\"col2\":\"Ajax22\",\"col3\":\"@mdo\",\"col4\":\"<span class='label label-warning'>Expiring</span>\"},{\"col1\":\"Ajax33\",\"col2\":\"Ajax44\",\"col3\":\"@mdo\",\"col4\":\"<span class='label label-warning'>Expiring</span>\"}]";
 		return jsonData;
 	}
 }

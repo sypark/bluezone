@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/static/css/bluezone.css" media="screen">
 <script src="/static/js/jquery-1.10.2.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.json-2.4.min.js"></script>
 <script src="/static/js/cust/cust_login.js"></script>
 </head>
 

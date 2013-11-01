@@ -15,4 +15,5 @@
 	<link rel="stylesheet" href="/static/css/ui/base.css">
 	<script type="text/javascript" src="/static/js/ui/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="/static/js/ui/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/ui/jquery.json-2.4.min.js"></script>
 </head>

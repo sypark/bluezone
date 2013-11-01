@@ -93,40 +93,63 @@ ajaxTablePage:function(){
 			<div class="bs-example">
 				<button type="button" class="btn btn-info btn-sm" id="btn_ajax_table3">Ajax데이터가져오기</button>
 				<button type="button" class="btn btn-primary btn-sm" id="btn_ajax_show3">Ajax데이터펼쳐보기</button></div>
-			<div class="highlight" id="div_ajax_show3" style="display:none;"><pre><code class="html">var AjaxClass={
-ajaxTablePage:function(){
-	var requestUrl = "/ui/tableLayer.do";
-	var params = new function(){
-		this.param1 = "aa";
-		this.param2 = "bb";
-	};
+			<div class="highlight" id="div_ajax_show3" style="display:none;"><pre><code class="html">
+[Source]
+String='[{&quot;col1&quot;:&quot;Ajax11&quot;,&quot;col2&quot;:&quot;Ajax22&quot;,&quot;col3&quot;:&quot;@mdo&quot;,&quot;col4&quot;:&quot;&lt;span class='label label-warning'&gt;Expiring&lt;/span&gt;&quot;},{&quot;col1&quot;:&quot;Ajax33&quot;,&quot;col2&quot;:&quot;Ajax44&quot;,&quot;col3&quot;:&quot;@mdo&quot;,&quot;col4&quot;:&quot;&lt;span class='label label-warning'&gt;Expiring&lt;/span&gt;&quot;}]';
+
+[Ajax]
+var AjaxClass={
+ajaxTablePage3:function(){
+	var requestUrl = &quot;/ui/tableJson.do&quot;;
+	
 	$.ajax({
-		type:"GET",
+		type:&quot;GET&quot;,
 		url:requestUrl,
-		data:params,
 		timeout:3000,
 		async:false,
 		beforeSend:function(){	//  Ajax 호출 전 실행
-   			alert("beforeSend Process");
-   			$("#span_ajax_table").empty();
-			$("#span_ajax_table").html("&lt;img src=\"/static/img/ajax-loader_big.gif\"&gt;");
+   			$(&quot;#span_ajax_table3&quot;).empty();
+			$(&quot;#span_ajax_table3&quot;).html(&quot;&lt;img src=\&quot;/static/img/ajax-loader_big.gif\&quot;&gt;&quot;);
    		},
 		success:function(data){		//  Ajax 실행시 데이터 
 			if(data != undefined && data != null){
-				$("#span_ajax_table").empty();
-				$("#span_ajax_table").html(data);
+				AjaxClass.dataRendering(data);
 			}else{
-				alert("Data Loading Failed");	
+				alert(&quot;Data Loading Failed&quot;);	
 			}
-			alert("success Process");
 		},
 		error:function(XHR, textStatus, errorThrown) {		//  Error시  실행
    	    }, 
            complete:function(){		//  Ajax 완료시 실행(finally와 동일)
-           	alert("complete Process");
            }
 	});
-}	
+},
+dataRendering:function(data){
+	// String to JSON Object
+	var ajaxData = jQuery.parseJSON(data);
+	var vTable = &quot;&lt;table class=\&quot;table\&quot;&gt;&quot;
+	+&quot;	&lt;thead&gt;&quot;
+	+&quot;		&lt;tr&gt;&quot;
+	+&quot;			&lt;th&gt;#&lt;/th&gt;&quot;
+	+&quot;			&lt;th&gt;First Name&lt;/th&gt;&quot;
+	+&quot;			&lt;th class=\&quot;hidden-sm\&quot;&gt;Last Name&lt;/th&gt;&quot;
+	+&quot;			&lt;th&gt;Status&lt;/th&gt;&quot;
+	+&quot;		&lt;/tr&gt;&quot;
+	+&quot;	&lt;/thead&gt;&quot;
+	+&quot;	&lt;tbody&gt;&quot;;
+	for(var i = 0; i &lt; ajaxData.length ; i++){
+		vTable += &quot;		&lt;tr&gt;&quot;
+		+&quot;			&lt;td&gt;&quot;+ajaxData[i].col1+&quot;&lt;/td&gt;&quot;
+		+&quot;			&lt;td&gt;&quot;+ajaxData[i].col2+&quot;&lt;/td&gt;&quot;
+		+&quot;			&lt;td class=\&quot;hidden-sm\&quot;&gt;&quot;+ajaxData[i].col3+&quot;&lt;/td&gt;&quot;
+		+&quot;			&lt;td&gt;&quot;+ajaxData[i].col4+&quot;&lt;/td&gt;&quot;
+		+&quot;		&lt;/tr&gt;&quot;;
+	}
+	vTable += &quot;	&lt;/tbody&gt;&quot;
+	+&quot;&lt;/table&gt;&quot;;
+	
+	$(&quot;#span_ajax_table3&quot;).html(vTable);
+}
 };</code></pre>
 			</div>
 			<!--End bs-example-->
@@ -190,7 +213,6 @@ var AjaxClass={
 			timeout:3000,
 			async:false,
 			beforeSend:function(){	//  Ajax 호출 전 실행
-    			alert("beforeSend Process");
     			$("#span_ajax_table3").empty();
 				$("#span_ajax_table3").html("<img src=\"/static/img/ajax-loader_big.gif\">");
     		},
@@ -200,24 +222,38 @@ var AjaxClass={
 				}else{
 					alert("Data Loading Failed");	
 				}
-				alert("success Process3");
 			},
 			error:function(XHR, textStatus, errorThrown) {		//  Error시  실행
     	    }, 
             complete:function(){		//  Ajax 완료시 실행(finally와 동일)
-            	alert("complete Process3");
             }
 		});
 	},
 	dataRendering:function(data){
-		alert(data.length);
-		console.log(data);
-		console.log($.toJSON(data));
+		// String to JSON Object
+		var ajaxData = jQuery.parseJSON(data);
+		var vTable = "<table class=\"table\">"
+		+"	<thead>"
+		+"		<tr>"
+		+"			<th>#</th>"
+		+"			<th>First Name</th>"
+		+"			<th class=\"hidden-sm\">Last Name</th>"
+		+"			<th>Status</th>"
+		+"		</tr>"
+		+"	</thead>"
+		+"	<tbody>";
+		for(var i = 0; i < ajaxData.length ; i++){
+			vTable += "		<tr>"
+			+"			<td>"+ajaxData[i].col1+"</td>"
+			+"			<td>"+ajaxData[i].col2+"</td>"
+			+"			<td class=\"hidden-sm\">"+ajaxData[i].col3+"</td>"
+			+"			<td>"+ajaxData[i].col4+"</td>"
+			+"		</tr>";
+		}
+		vTable += "	</tbody>"
+		+"</table>";
 		
-		//for(var i = 0; i < data.length ; i++){
-			//alert(data[i].col1);
-		//}
-		//$("#span_ajax_table3").html(data);
+		$("#span_ajax_table3").html(vTable);
 	}
 };
     jQuery(document).ready(function() {
