@@ -6,10 +6,19 @@
 <%@page import="com.bluezone.bil.domain.cust.AnalysisCustRecord" %>
 <%
 	CstCustMst cstCustMst = (CstCustMst)request.getAttribute("cstCustMst");
-	CstCustRecordMst cstCustRecordMst = (CstCustRecordMst)request.getAttribute("cstCustRecordMst");
-	AnalysisCustRecord analysisCustRecord = (AnalysisCustRecord)request.getAttribute("analysisCustRecord");
-	List<AnalysisCustRecord> againstList = (List<AnalysisCustRecord>)request.getAttribute("analysisAgainstRecordList");
-	String earnAvgScore = String.format("%.2f", (analysisCustRecord.getSumEarnScore()/analysisCustRecord.getGameCnt()*1.0f));
+	CstCustRecordMst cstCustRecordMst = null;
+	if(request.getAttribute("cstCustRecordMst") != null){
+		cstCustRecordMst = (CstCustRecordMst)request.getAttribute("cstCustRecordMst");
+	}
+	AnalysisCustRecord analysisCustRecord = null;
+	if(request.getAttribute("analysisCustRecord") != null){
+		analysisCustRecord = (AnalysisCustRecord)request.getAttribute("analysisCustRecord");
+	}
+	List<AnalysisCustRecord> againstList = null;
+	if(request.getAttribute("analysisAgainstRecordList") != null){
+		againstList = (List<AnalysisCustRecord>)request.getAttribute("analysisAgainstRecordList");
+	}
+	String earnAvgScore = String.format("%.2f", (analysisCustRecord != null ? (analysisCustRecord.getSumEarnScore()/analysisCustRecord.getGameCnt()*1.0f):0f));
 %>
 
 <!-- Head -->
@@ -39,7 +48,7 @@ Main.runLineChart2();
 							점수.
 						</div>
 						<div class="infobox-data">
-							<span class="infobox-data-number"><%=cstCustRecordMst.getScore()%></span>
+							<span class="infobox-data-number"><%=(cstCustRecordMst != null ? cstCustRecordMst.getScore():0)%></span>
 							<div class="infobox-content">comments + 2 reviews</div>
 						</div>
 						<div class="stat stat-success">8%</div>
@@ -50,7 +59,7 @@ Main.runLineChart2();
 						</div>
 	
 						<div class="infobox-data">
-							<span class="infobox-data-number"><%=analysisCustRecord.getMaxHighRun()%></span>
+							<span class="infobox-data-number"><%=(analysisCustRecord != null ? analysisCustRecord.getMaxHighRun():0)%></span>
 							<div class="infobox-content">new followers</div>
 						</div>
 	
@@ -65,7 +74,7 @@ Main.runLineChart2();
 						</div>
 	
 						<div class="infobox-data">
-							<span class="infobox-data-number"><%=String.format("%.2f", analysisCustRecord.getGameAvg())%></span>
+							<span class="infobox-data-number"><%=String.format("%.2f", (analysisCustRecord != null ? analysisCustRecord.getGameAvg():0))%></span>
 							<div class="infobox-content">experiments</div>
 						</div>
 					</div>

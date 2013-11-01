@@ -2,6 +2,7 @@
 			<ul class="list-group sidebar-nav-v1">
                 <li class="list-group-item <%=("button".equalsIgnoreCase(request.getParameter("left_name")) ? "active":"")%>"><a href="/ui/button.do">Buttons</a></li>
                 <li class="list-group-item <%=("table".equalsIgnoreCase(request.getParameter("left_name")) ? "active":"")%>"><a href="/ui/table.do">Tables</a></li>
+                <li class="list-group-item <%=("ajax".equalsIgnoreCase(request.getParameter("left_name")) ? "active":"")%>"><a href="/ui/ajax.do">Ajax</a></li>
                 <!-- 
                 <li class="list-group-item"><a href="feature_grid.html">Grid Layout</a></li>
                 <li class="list-group-item">
